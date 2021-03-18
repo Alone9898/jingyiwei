@@ -1,0 +1,48 @@
+.flex{
+	display: flex;
+}
+.flex-sub{
+	flex: 1;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.text-center{
+	text-align: center;
+}
+.align-center{
+	align-items: center;
+}
+.justify-start{
+    justify-items: start;
+}
+.bg-white{
+	background-color: #fff;
+}
+.padding-sm{
+	padding: 20upx;
+}
+.text-bold{
+	font-weight: bold;
+}  
+.text-xl{
+	
+}
+.text-black{
+	color: #000000;
+}
+.bb{
+	box-sizing: border-box;
+}
+.mb-20{
+	margin-bottom: 20upx;
+}
+.mb-40{
+	margin-bottom: 40upx;
+}
+.text-white{
+    color: #fff;
+}
+.text-center{
+    text-align: center;
+}
