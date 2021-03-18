@@ -158,7 +158,7 @@
 			}
 		},
 		components: {
-			// tabbar
+			 tabbar
 		},
 		methods: {
 			inform() {

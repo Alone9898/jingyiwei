@@ -141,7 +141,7 @@
         mapState,
         mapMutations
     } from 'vuex'
-    // import tabbar from "@/components/tabar/tabar.vue"
+     import tabbar from "@/components/tabar/tabar.vue"
     export default {
         data() {
             return {
@@ -152,9 +152,9 @@
                 }
             };
         },
-        // components: {
-        //     tabbar
-        // },
+        components: {
+            tabbar
+        },
         onLoad() {
 
         },
