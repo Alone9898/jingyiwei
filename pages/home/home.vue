@@ -1,0 +1,18 @@
+<template>
+	<view>
+		<text>home</text>
+		<tabbar></tabbar>
+	</view>
+</template>
+
+<script>
+	import tabbar from "@/components/tabar/tabar.vue"
+	export default {
+		components: {
+			 tabbar
+		},
+	}
+</script>
+
+<style>
+</style>

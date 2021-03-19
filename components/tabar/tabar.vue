@@ -21,39 +21,25 @@
 		data() {
 			return {
 				//
-				active: 0,
+				active: 2,
 				tabar: [{
 						id: 0,
-						normal: '/static/tabar/home_1.png',
-						active: '/static/tabar/home.png',
-						name: '发现',
-						path: '../main/main',
+						normal: '/static/tabar/msg_normal.png',
+						active: '/static/tabar/msg_active.png',
+						name: '消息',
+						path: '../message/message',
 					},
 					{
 						id: 1,
-						normal: '/static/tabar/college.png',
-						active: '/static/tabar/college_1.png',
-						name: '众学院',
-						path: '../main/main',
+						normal: '/static/tabar/home_normal.png',
+						active: '/static/tabar/home_active.png',
+						name: '首页',
+						path: '../home/home',
 					},
 					{
 						id: 2,
-						normal: '/static/tabar/measurement.png',
-						active: '/static/tabar/measurement_1.png',
-						name: '众测评',
-						path: '../user/user',
-					},
-					{
-						id: 3,
-						normal: '/static/tabar/learning.png',
-						active: '/static/tabar/learning_1.png',
-						name: '学习中心',
-						path: '../user/user',
-					},
-					{
-						id: 4,
-						normal: '/static/tabar/me_1.png',
-						active: '/static/tabar/me.png',
+						normal: '/static/tabar/user_normal.png',
+						active: '/static/tabar/user_active.png',
 						name: '我的',
 						path: '../user/user',
 					},
@@ -89,35 +75,3 @@
 		}
 	}
 </style>
-<!-- 	"tabBar": {
-		"color": "#B2B2B2",
-		"selectedColor": "#3875F6",
-		"backgroundColor": "#ffffff",
-		"list": [{
-			"pagePath": "pages/main/main",
-			"text": "发现",
-			"iconPath": "/static/tabar/home_1.png",
-			"selectedIconPath": "/static/tabar/home.png"
-		},{
-			"pagePath": "pages/main/main",
-			"text": "众学院",
-			"iconPath": "/static/tabar/college.png",
-			"selectedIconPath": "/static/tabar/college_1.png"
-		},
-	    {
-	    	"pagePath": "pages/user/user",
-	    	"text": "众测评",
-	    	"iconPath": "/static/tabar/home_1.png",
-	    	"selectedIconPath": "/static/tabar/home.png"
-	    },{
-	    	"pagePath": "pages/user/user",
-	    	"text": "学习中心",
-	    	"iconPath": "/static/tabar/learning.png",
-	    	"selectedIconPath": "/static/tabar/learning_1.png"
-	    },{
-			"pagePath": "pages/user/user",
-			"text": "我的",
-			"iconPath": "/static/tabar/me_1.png",
-			"selectedIconPath": "/static/tabar/me.png"
-		}]
-	}, -->

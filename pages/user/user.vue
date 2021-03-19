@@ -1,51 +1,34 @@
 <template>
-    <view class="content" style="background: #f2f2f2;width: 100%;height: 100%;position: absolute;top: 0px; bottom: 0px;">
-        <view class="bg-img" style="background-image: url(../../static/img/me_bg.png);">
+    <view class="content" style="background: #fff;width: 100%;height: 100%;position: absolute;top: 0px; bottom: 0px;">
+        <view class="bg-img" style="height: 170rpx;">
             <view class="flex align-center">
-                <van-image width="100rpx" height="100rpx" fit="cover" round src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                <van-image width="100rpx" height="100rpx" fit="cover" radius='4' src="https://img.yzcdn.cn/vant/cat.jpeg" />
                 <view class="xl round margin-left" :style="'background-image:url('+account.account_head_image+')'"></view>
                 <view>
-                    <view class="text-xl text-bold text-white flex align-center" style="padding-left: 20upx;height: 60upx;">
-                        <text v-if="loginStatus">{{account.account_nickname}}</text>
+                    <view class="text-xl text-bold text-white flex align-center" style="padding-left: 20upx;">
+                        <text v-if="loginStatus" style="color: #3F536E;">{{account.account_nickname}}</text>
                         <navigator v-else url="../login/login" hover-class="none">
                             <text>登录/注册</text>
                         </navigator>
-                        <view class="member">
-                            VIP7
-                        </view>
+                        <text class="member">
+                            部门：信息部
+                        </text>
                     </view>
                 </view>
                 <view class="setting">
                     <view @click="setting()"></view>
-                </view>
-            </view>
-            <view class="flex countNum">
-                <view class="flex-sub">
-                    <view>2586</view>
-                    <view>奖金</view>
-                </view>
-                <view class="flex-sub">
-                    <view>8786</view>
-                    <view>积分</view>
-                </view>
-                <view class="flex-sub">
-                    <view>56</view>
-                    <view>关注</view>
-                </view>
-                <view class="flex-sub">
-                    <view>256</view>
-                    <view>点赞</view>
+                    <text>本月工单处理</text>
                 </view>
             </view>
         </view>
         <view class="preview">
-            <view class="flex flex-wrap">
+            <view class="flex flex-wrap" style="justify-content: space-around;">
                 <view>
                     <view class="imgBox">
                         <image src="../../static/img/measurement.png" mode="aspectFill" @click="skip(0)"></image>
                     </view>
                     <view class="text-dec">
-                        我的测评
+                        接单中心
                     </view>
                 </view>
                 <view>
@@ -53,7 +36,7 @@
                         <image src="../../static/img/service.png" mode="aspectFill" @click="skip(0)"></image>
                     </view>
                     <view class="text-dec">
-                        我的沟通
+                        我的工单
                     </view>
                 </view>
                 <view>
@@ -61,76 +44,10 @@
                         <image src="../../static/img/reading.png" mode="aspectFill" @click="skip(0)"></image>
                     </view>
                     <view class="text-dec">
-                        我的阅读
-                    </view>
-                </view>
-                <view>
-                    <view class="imgBox">
-                        <image src="../../static/img/complaints.png" mode="aspectFill" @click="skip(0)"></image>
-                    </view>
-                    <view class="text-dec">
-                        课程订单
-                    </view>
-                </view>
-                <view>
-                    <view class="imgBox">
-                        <image src="../../static/img/mall.png" mode="aspectFill" @click="skip(0)"></image>
-                    </view>
-                    <view class="text-dec">
-                        商城订单
+                        工单审核
                     </view>
                 </view>
             </view>
-        </view>
-        <view class="cu-list padding-sm">
-            <van-cell is-link link-type="navigateTo" url="/pages/dashboard/index">
-                <view slot="title">
-                    <view class="van-cell-text flex align-center">
-                        <van-icon name="/static/img/course.png" size="33rpx" />
-                        <text class="cu-list-text">课程赠送</text>
-                    </view>
-                </view>
-            </van-cell>
-            <van-cell is-link link-type="navigateTo" url="/pages/dashboard/index">
-                <view slot="title">
-                    <view class="van-cell-text flex align-center">
-                        <van-icon name="/static/img/star.png" size="33rpx" />
-                        <text class="cu-list-text">我的收藏</text>
-                    </view>
-                </view>
-            </van-cell>
-            <van-cell is-link link-type="navigateTo" url="/pages/dashboard/index">
-                <view slot="title">
-                    <view class="van-cell-text flex align-center">
-                        <van-icon name="/static/img/card.png" size="33rpx" />
-                        <text class="cu-list-text">流量历史</text>
-                    </view>
-                </view>
-            </van-cell>
-            <van-cell is-link link-type="navigateTo" url="/pages/dashboard/index">
-                <view slot="title">
-                    <view class="van-cell-text flex align-center">
-                        <van-icon name="/static/img/star.png" size="33rpx" />
-                        <text class="cu-list-text">我的下载</text>
-                    </view>
-                </view>
-            </van-cell>
-            <van-cell is-link link-type="navigateTo" url="/pages/dashboard/index">
-                <view slot="title">
-                    <view class="van-cell-text flex align-center">
-                        <van-icon name="/static/img/Spellgroup.png" size="33rpx" />
-                        <text class="cu-list-text">我的拼团</text>
-                    </view>
-                </view>
-            </van-cell>
-            <van-cell is-link link-type="navigateTo" :url="loginStatus?'userClass/complaint':'../login/login'">
-                <view slot="title">
-                    <view class="van-cell-text flex align-center">
-                        <van-icon name="/static/img/vouchers.png" size="33rpx" />
-                        <text class="cu-list-text">优惠券</text>
-                    </view>
-                </view>
-            </van-cell>
         </view>
         <tabbar></tabbar>
     </view>
@@ -147,7 +64,7 @@
             return {
                 loginStatus: false,
                 account: {
-                    account_nickname: '雷老板',
+                    account_nickname: 'XXX',
                     account_head_image: '',
                 }
             };
@@ -167,6 +84,7 @@
         },
         methods: {
             setting() {
+				console.log(222)
                 if (!this.loginStatus) {
                     uni.navigateTo({
                         url: "../login/login"
@@ -219,32 +137,32 @@
     }
 
     .setting {
-        height: 40upx;
+        height: 60upx;
         margin-left: auto;
 
         &>view {
-            background-image: url(../../static/img/Setupthe.png);
+            background-image: url(../../static/img/chart.png);
             background-size: cover;
-            width: 40upx;
-            height: 40upx;
+            width: 60upx;
+            height: 60upx;
         }
     }
 
     .member {
-        width: 125upx;
         height: 40upx;
-        margin-left: 10upx;
-        background-image: url(../../static/img/members.png);
         background-size: 100% 100%;
         font-weight: 400;
         font-size: 24upx;
         text-align: right;
         box-sizing: border-box;
         line-height: 40upx;
-        padding-left: 30upx;
-        text-align: center;
-        color: #f1d087;
+        color: rgb(155, 155, 155);
     }
+	.text-xl{
+		display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+	}
 
     .countNum {
         padding-top: 40upx;
@@ -265,16 +183,16 @@
     }
 
     .preview {
-        height: 320upx;
+        height: 160upx;
         margin: -27upx 30upx 20upx 30upx;
         border-radius: 14rpx;
         background: #ffffff;
         box-sizing: border-box;
-
+		box-shadow: 0px 0px 10px 0px #9c9c9c;
         image {
             width: 40upx;
             height: 40upx;
-        }
+        }	
 
         .flex {
             &>view {
