@@ -1,5 +1,5 @@
 {
-    "name" : "bj_zzh_edu_applet",
+    "name" : "jingyiwei",
     "appid" : "__UNI__EBA06D1",
     "description" : "",
     "versionName" : "1.0.0",
@@ -59,7 +59,8 @@
     "mp-weixin" : {
         "appid" : "wx49af52e9e8159153",
         "setting" : {
-            "urlCheck" : true
+            "urlCheck" : true,
+            "es6" : true
         },
         "usingComponents" : true
     },
