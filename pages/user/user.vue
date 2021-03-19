@@ -7,15 +7,15 @@
                 <view>
                     <view class="text-xl text-bold text-white flex align-center" style="padding-left: 20upx;">
                         <text v-if="loginStatus" style="color: #3F536E;">{{account.account_nickname}}</text>
-                        <navigator v-else url="../login/login" hover-class="none">
-                            <text>登录/注册</text>
+                        <navigator v-if="!loginStatus" url="../login/login" hover-class="none">
+                            <text style="color:#000">登录/注册</text>
                         </navigator>
-                        <text class="member">
+                        <text class="member" v-if="loginStatus">
                             部门：信息部
                         </text>
                     </view>
                 </view>
-                <view class="setting">
+                <view class="setting" v-if="loginStatus">
                     <view @click="setting()"></view>
                     <text>本月工单处理</text>
                 </view>
@@ -24,24 +24,24 @@
         <view class="preview">
             <view class="flex flex-wrap" style="justify-content: space-around;">
                 <view>
-                    <view class="imgBox">
-                        <image src="../../static/img/measurement.png" mode="aspectFill" @click="skip(0)"></image>
+                    <view class="imgBox" @click="skip(0)">
+                        <image src="../../static/img/orders.png" mode="aspectFill"></image>
                     </view>
                     <view class="text-dec">
                         接单中心
                     </view>
                 </view>
                 <view>
-                    <view class="imgBox">
-                        <image src="../../static/img/service.png" mode="aspectFill" @click="skip(0)"></image>
+                    <view class="imgBox" @click="skip(1)">
+                        <image src="../../static/img/myorder.png" mode="aspectFill"></image>
                     </view>
                     <view class="text-dec">
                         我的工单
                     </view>
                 </view>
                 <view>
-                    <view class="imgBox">
-                        <image src="../../static/img/reading.png" mode="aspectFill" @click="skip(0)"></image>
+                    <view class="imgBox" @click="skip(2)">
+                        <image src="../../static/img/reorder.png" mode="aspectFill"></image>
                     </view>
                     <view class="text-dec">
                         工单审核
@@ -49,6 +49,19 @@
                 </view>
             </view>
         </view>
+        <van-dialog
+        use-slot
+        title="本月工单处理"
+        show="{{ orderChartShow }}"
+        :show-cancel-button='false'
+        :show-confirm-button='false'
+        :close-on-click-overlay='true'
+        @close="onClose"
+        >
+            <div style="width: 600rpx;height: 400rpx;margin: 40rpx auto">
+                <canvas style="width: 100%; height: 100%;" canvas-id="firstCanvas" id="firstCanvas"></canvas>
+            </div>
+        </van-dialog>
         <tabbar></tabbar>
     </view>
 </template>
@@ -66,32 +79,53 @@
                 account: {
                     account_nickname: 'XXX',
                     account_head_image: '',
+                },
+                orderChartShow: false,
+                listPageConfig: {
+                    0: 'recOrder',
+                    1: '',
+                    2: ''
                 }
             };
         },
         components: {
             tabbar
         },
-        onLoad() {
-
+        onReady() {
+            var context = uni.createCanvasContext('firstCanvas')
+            context.setStrokeStyle("#ff0000")
+            context.setLineWidth(2)
+            context.moveTo(160, 100)
+            context.arc(100, 100, 60, 0, 2 * Math.PI, true)
+            context.moveTo(140, 100)
+            context.arc(100, 100, 40, 0, Math.PI, false)
+            context.moveTo(85, 80)
+            context.arc(80, 80, 5, 0, 2 * Math.PI, true)
+            context.moveTo(125, 80)
+            context.arc(120, 80, 5, 0, 2 * Math.PI, true)
+            context.stroke()
+            context.draw()
         },
         onShow() {
             let token = getApp().globalData.token
             if (token !== "") {
                 this.loginStatus = true
-                this.getAccountInfo()
+                // this.getAccountInfo()
             }
         },
         methods: {
+            onClose() {
+                this.orderChartShow = false;
+            },
             setting() {
-				console.log(222)
+                this.orderChartShow = true;
                 if (!this.loginStatus) {
                     uni.navigateTo({
                         url: "../login/login"
                     })
                 } else {
                     uni.navigateTo({
-                        url: 'userClass/setting'
+                        url: '/userClass/setting'
                     })
                 }
             },
@@ -108,13 +142,14 @@
                 })
             },
             skip(i) {
+                console.log('i', i);
                 if (!this.loginStatus) {
                     uni.navigateTo({
                         url: "../login/login"
                     })
                 } else {
                     uni.navigateTo({
-                        url: '../userClass/order?tep=' + i
+                        url: '../' + this.listPageConfig[i] + '/index'
                     })
                 }
             },
@@ -137,14 +172,18 @@
     }
 
     .setting {
-        height: 60upx;
+        height: 110rpx;
         margin-left: auto;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 20rpx;
         &>view {
             background-image: url(../../static/img/chart.png);
             background-size: cover;
-            width: 60upx;
-            height: 60upx;
+            width: 80rpx;
+            height: 80rpx;
         }
     }
 
@@ -163,24 +202,6 @@
         flex-direction: column;
         align-items: flex-start;
 	}
-
-    .countNum {
-        padding-top: 40upx;
-
-        .flex-sub {
-            view {
-                font-size: 28upx;
-                font-weight: 400;
-                text-align: center;
-                color: #ffffff;
-            }
-
-            &>view:nth-child(2) {
-                margin-top: 24upx;
-                font-weight: 700;
-            }
-        }
-    }
 
     .preview {
         height: 160upx;
@@ -201,45 +222,20 @@
                 text-align: center;
 
                 .imgBox {
-                    height: 40upx;
-                    line-height: 40upx;
+                    height: 50rpx;
+                    line-height: 50rpx;
+                    image{
+                        height: 50rpx;
+                        width: 50rpx;
+                    }
                 }
-
                 .text-dec {
-                    font-size: 26upx;
-                    margin-top: 30upx;
+                    font-size: 26rpx;
+                    margin-top: 10rpx;
                     font-weight: 400;
                     color: #333333;
                 }
             }
         }
-
-        ;
-    }
-
-    .cu-list {
-        padding: 0 30upx;
-        border-radius: 14upx;
-        margin-bottom: 130upx;
-        box-shadow: 0px 1px 35upx 0px #eaeaea;
-
-        .cu-list-text {
-            margin-left: 33upx;
-            font-size: 28upx;
-            font-weight: 400;
-            color: #333333;
-        }
-    }
-
-    .cu-list.menu>.cu-item .content>image {
-        width: 30upx;
-        height: 30upx;
-    }
-
-    .cu-list.menu>.cu-item .content>.text-grey {
-        font-size: 28upx;
-        font-weight: 400;
-        color: #333333;
-        margin-left: 35upx;
     }
 </style>
