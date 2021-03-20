@@ -166,7 +166,7 @@
 
     .bg-img {
         height: 340upx;
-        padding-top: 120upx;
+        padding-top: 180upx;
         padding-left: 36upx;
         padding-right: 36upx;
     }

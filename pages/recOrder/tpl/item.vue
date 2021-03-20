@@ -21,7 +21,23 @@
                 </view>
             </view>
             <view class="content_msg">
-
+                <view class="content_title">
+                    <text>康复维修组</text>
+                    <text>后勤保障部-设备维修科</text>
+                </view>
+                <view class="content_body">
+                    <van-cell center is-link>
+                        <view slot="title">
+                            <view class="van-cell-text">单元格</view>
+                            <view class="van-cell-text">单元格</view>
+                            <view class="van-cell-text">单元格</view>
+                        </view>
+                    </van-cell>
+                </view>
+                <view class="content_btn">
+                    <van-button size="small" round type="info">接 单</van-button>
+                    <van-button size="small" round type="info">退 单</van-button>
+                </view>
             </view>
         </view>
     </view>
@@ -45,12 +61,13 @@
     padding: 30rpx;
     background: #f5f5f5;
     .item_card{
-        height: 500rpx;
         width: 100%;
         background: #fff;
         margin-bottom: 40rpx;
         box-shadow: 0px 0px 10px 0px #f3f3f3;
         border-radius: 20rpx;
+        display: flex;
+        flex-direction: column;
         .top_msg{
             display: flex;
             height: 120rpx;
@@ -68,6 +85,7 @@
                 }
                 view:nth-child(1){
                     background: red;
+                    color: #fff;
                     border-radius: 20rpx 0 0 0;
                 }
                 view:nth-child(2){
@@ -77,7 +95,7 @@
                 }
             }
             .top_msg_right{
-                height: 100%;
+                height: calc(100% - 1rpx);
                 flex: 1;
                 display: flex;
                 flex-direction: column;
@@ -102,7 +120,28 @@
             }
         }
         .content_msg{
-
+            flex: 1;
+            padding: 20rpx;
+            .content_title{
+                text:nth-child(1){
+                    font-size: 44rpx;
+                    font-weight: 600;
+                }
+                text:nth-child(2){
+                    margin-left: 30rpx;
+                    font-size: 28rpx;
+                    color: rgb(124, 124, 124);
+                }
+            }
+            .content_btn{
+                height: 80rpx;
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                van-button{
+                    margin-left: 20rpx;
+                }
+            }
         }
     }
 }
