@@ -5,7 +5,7 @@
 <template>
     <div class='index_body'>
         <van-search
-        value="{{ queryKeyWord }}"
+        :value="queryKeyWord"
         shape="round"
         background="#fff"
         placeholder="请输入搜索关键词"

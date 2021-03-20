@@ -52,7 +52,7 @@
         <van-dialog
         use-slot
         title="本月工单处理"
-        show="{{ orderChartShow }}"
+        :show="orderChartShow"
         :show-cancel-button='false'
         :show-confirm-button='false'
         :close-on-click-overlay='true'
