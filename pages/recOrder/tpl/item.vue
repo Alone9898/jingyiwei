@@ -95,7 +95,7 @@
                 }
             }
             .top_msg_right{
-                height: calc(100% - 1rpx);
+                height: 120rpx - 1rpx;
                 flex: 1;
                 display: flex;
                 flex-direction: column;
