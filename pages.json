@@ -54,24 +54,6 @@
 			}
 		},
         {
-            "path": "pages/message/message",
-            "style": {
-                "usingComponents": {
-                    "van-row": "/wxcomponents/vant/tabbar/index",
-                    "van-search": "/wxcomponents/vant/search/index",
-                    "van-icon": "/wxcomponents/vant/icon/index",
-                    "van-image": "/wxcomponents/vant/image/index"
-                },
-                "navigationStyle": "custom"
-            }
-        },
-        {
-            "path": "pages/home/home",
-            "style": {
-                "navigationBarTitleText": "主页"
-            }
-        },
-        {
             "path": "pages/main/main",
             "style": {
                 "usingComponents": {
