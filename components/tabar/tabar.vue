@@ -56,10 +56,12 @@
 		methods: {
 			//
 			tab(e, path) {
-                this.$store.commit('tabarActive',e)
-				uni.reLaunch({
-					url: path
-				});
+                if(this.active!==e){
+                  this.$store.commit('tabarActive',e)
+                  uni.reLaunch({
+                      url: path
+                  })  
+                }
 			},
 		},
         mounted() {
