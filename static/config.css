@@ -16,11 +16,14 @@
 .justify-start{
     justify-items: start;
 }
+.space-between{
+    justify-content: space-between;
+}
 .bg-white{
 	background-color: #fff;
 }
 .padding-sm{
-	padding: 20upx;
+	padding: 20px;
 }
 .text-bold{
 	font-weight: bold;
@@ -34,11 +37,20 @@
 .bb{
 	box-sizing: border-box;
 }
+.mb-15{
+	margin-bottom: 20px;
+}
 .mb-20{
-	margin-bottom: 20upx;
+	margin-bottom: 20px;
 }
 .mb-40{
-	margin-bottom: 40upx;
+	margin-bottom: 40px;
+}
+.ml-15{
+    margin-left: 15px;
+}
+.ml-30{
+    margin-left: 30px;
 }
 .text-white{
     color: #fff;
