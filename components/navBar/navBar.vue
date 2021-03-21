@@ -68,6 +68,7 @@
         top: 0;
         left: 0;
         width: 100vw;
+        z-index: 9;
         height:var(--status-bar-height);
         .nav-main {
             width: 100%;

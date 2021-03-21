@@ -59,7 +59,7 @@
         @close="onClose"
         >
             <div style="width: 600rpx;height: 400rpx;margin: 40rpx auto">
-                <canvas style="width: 100%; height: 100%;" canvas-id="firstCanvas" id="firstCanvas"></canvas>
+              <pie-chart :dataAs="pieData" canvasId="index_pie_1" :width="580" :height="420"/>
             </div>
         </van-dialog>
         <tabbar></tabbar>
@@ -72,6 +72,7 @@
         mapMutations
     } from 'vuex'
      import tabbar from "@/components/tabar/tabar.vue"
+     import PieChart from '@/components/stan-ucharts/PieChart.vue'
     export default {
         data() {
             return {
@@ -85,11 +86,37 @@
                     0: 'recOrder',
                     1: 'myOrder',
                     2: 'revOrder'
+                },
+                pieData: {
+                	//饼状图数据
+                	series: [
+                		{
+                			name: '待审核',
+                			data: 50
+                		},
+                		{
+                			name: '已完成',
+                			data: 20
+                		},
+                		{
+                			name: '处理中',
+                			data: 18
+                		},
+                		{
+                			name: '暂停处理',
+                			data: 1
+                		},
+                		{
+                			name: '待评价',
+                			data: 8
+                		}
+                	]
                 }
             };
         },
         components: {
-            tabbar
+            tabbar,
+            PieChart
         },
         onReady() {
             var context = uni.createCanvasContext('firstCanvas')
