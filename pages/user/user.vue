@@ -83,8 +83,8 @@
                 orderChartShow: false,
                 listPageConfig: {
                     0: 'recOrder',
-                    1: '',
-                    2: ''
+                    1: 'myOrder',
+                    2: 'revOrder'
                 }
             };
         },
@@ -149,7 +149,7 @@
                     })
                 } else {
                     uni.navigateTo({
-                        url: '../' + this.listPageConfig[i] + '/index'
+                        url: '../order/index?type=' + this.listPageConfig[i]
                     })
                 }
             },

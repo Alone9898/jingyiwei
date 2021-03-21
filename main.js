@@ -6,6 +6,9 @@ import store from './store'
 Vue.prototype.$store = store
 Vue.config.productionTip = false
 
+import Tool from "./util/tool";
+Vue.prototype.$tool = Tool;
+
 App.mpType = 'app'
 
 const app = new Vue({

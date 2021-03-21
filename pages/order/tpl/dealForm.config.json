@@ -1,0 +1,164 @@
+{
+  "carry": {
+    "title": "完成",
+    "submit": {
+      "label": "完成",
+      "url": "aasf"
+    },
+    "form": [
+      {"label": "费用（元）", "key": "cost", "value": "", "type": "text"},
+      {"label": "故障分类", "key": "faultclass", "value": "", "type": "pick", "show": "faltclasshow", "option": [
+        {"text": "工业故障", "value": 0},
+        {"text": "自然故障", "value": 1},
+        {"text": "材料故障", "value": 2},
+        {"text": "信号故障", "value": 3},
+        {"text": "突发故障", "value": 4}
+      ]},
+      {"label": "故障原因", "key": "faultreason", "value": "", "type": "pick", "show": "faltreasonshow", "option": [
+        {"text": "xxx", "value": 0},
+        {"text": "455", "value": 1},
+        {"text": "df", "value": 2},
+        {"text": "tu", "value": 3}
+      ]},
+      {"label": "解决方式", "key": "solution", "value": "", "type": "text"},
+      {"label": "处理过程", "key": "process", "value": "", "type": "textarea"},
+      {"label": "事件原因", "key": "eveprocess", "value": "", "type": "textarea"},
+      {"label": "附件", "key": "files", "value": "", "type": "file"},
+      {"label": "存入知识库", "key": "issave", "value": false, "type": "switch"}
+    ]
+  
+  },
+  "suspend": {
+    "title": "暂停处理",
+    "submit": {
+      "label": "确定",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "暂停原因", "key": "reason", "value": "", "type": "text"},
+      {"label": "暂停说明", "key": "notion", "value": "", "type": "textarea"}
+    ]
+  },
+  "deal": {
+    "title": "处理",
+    "submit": {
+      "label": "确定",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "处理过程", "key": "process", "value": "", "type": "text"},
+      {"label": "附件", "key": "notion", "value": "", "type": "file"}
+    ]
+  },
+  "deliver": {
+    "title": "转交",
+    "submit": {
+      "label": "转交",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "转交原因", "key": "reason", "value": "", "type": "pick", "show": "reasonshow", "option": [
+        {"text": "个人原因", "value": 0},
+        {"text": "外部原因", "value": 1},
+        {"text": "材料不齐", "value": 2},
+        {"text": "无法支撑", "value": 3},
+        {"text": "他人原因", "value": 4}
+      ]},
+      {"label": "转交工程师", "key": "person", "value": "", "type": "pick", "show": "personshow", "option": [
+        {"text": "张三", "value": 0},
+        {"text": "李四", "value": 1},
+        {"text": "王五", "value": 2},
+        {"text": "赵四", "value": 3}
+      ]},
+      {"label": "转交人", "key": "reperson", "value": "", "type": "text"},
+      {"label": "转交说明", "key": "notion", "value": "", "type": "textarea"}
+    ]
+  },
+  "assist": {
+    "title": "多人协助",
+    "submit": {
+      "label": "多人协助",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "协助人员", "key": "person", "value": "", "type": "pick", "show": "personshow", "option": [
+        {"text": "张三", "value": 0},
+        {"text": "李四", "value": 1},
+        {"text": "王五", "value": 2},
+        {"text": "赵四", "value": 3}
+      ]},
+      {"label": "转交说明", "key": "notion", "value": "", "type": "textarea"}
+    ]
+  },
+  "terminal": {
+    "title": "终止工单",
+    "submit": {
+      "label": "终止工单",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "终止原因", "key": "season", "value": "", "type": "text"},
+      {"label": "终止说明", "key": "notion", "value": "", "type": "textarea"},
+      {"label": "终止时间", "key": "timer", "value": "", "show": "timepickshow", "type": "time"},
+      {"label": "终止人", "key": "person", "value": "", "type": "text"}
+    ]
+  },   
+	"return": {
+		"title": "退回",
+    "submit": {
+      "label": "退回",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "报修科室", "key": "depart", "value": "", "type": "text"},
+      {"label": "故障问题", "key": "fault", "value": "", "type": "text"},
+      {"label": "退回原因", "key": "reason", "value": "", "type": "text"},
+      {"label": "详细说明", "key": "notion", "value": "", "type": "textarea"}
+    ]
+  },
+	"upgrade": {
+		"title": "工单升级",
+    "submit": {
+      "label": "工单升级",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "需求标题", "key": "title", "value": "", "type": "text"},
+      {"label": "需求描述", "key": "notion", "value": "", "type": "textarea"},
+      {"label": "需求单号", "key": "number", "value": "", "type": "text"},
+      {"label": "处理人", "key": "person", "value": "", "type": "pick", "show": "personshow", "option": [
+        {"text": "张三", "value": 0},
+        {"text": "李四", "value": 1},
+        {"text": "王五", "value": 2},
+        {"text": "赵四", "value": 3}
+      ]},
+      {"label": "附件", "key": "files", "value": "", "type": "file"},
+      {"label": "更多信息", "key": "more", "value": false, "type": "switch"}
+    ]
+  },
+	"repair": {
+		"title": "送修",
+    "submit": {
+      "label": "送修",
+      "url": "ddth"
+    },
+    "form": [
+      {"label": "设备编号", "key": "depart", "value": "", "type": "text"},
+      {"label": "设备名称", "key": "fault", "value": "", "type": "text"},
+      {"label": "设备分类", "key": "person", "value": "", "type": "pick", "show": "personshow", "option": [
+        {"text": "张三", "value": 0},
+        {"text": "李四", "value": 1},
+        {"text": "王五", "value": 2},
+        {"text": "赵四", "value": 3}
+      ]},
+      {"label": "设备型号", "key": "fault", "value": "", "type": "text"},
+      {"label": "设备序列号", "key": "fault_num", "value": "", "type": "text"},
+      {"label": "设备重要性", "key": "isness", "value": 1, "type": "radio", "option": [
+        {"text": "重要", "value": 1},
+        {"text": "不重要", "value": 0}
+      ]},
+      {"label": "备注", "key": "tooltip", "value": "", "type": "textarea"},
+      {"label": "故障描述", "key": "notion", "value": "", "type": "textarea"}
+    ]
+  }
+}

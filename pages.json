@@ -10,8 +10,8 @@
                     "van-dialog": "/wxcomponents/vant/dialog/index"
                 },
                 "navigationStyle": "custom"
-            }
-        },
+			}
+		},
         {
             "path": "pages/message/message",
             "style": {
@@ -23,36 +23,69 @@
                 "navigationStyle": "custom",
                 "navigationBarTitleText": "锦医帷"
             }
-        },
-        {
-            "path": "pages/home/home",
-            "style": {
-                "navigationBarTitleText": "主页",
-                "navigationStyle": "custom"
-            }
-        },
-        {
-            "path": "pages/recOrder/index",
-            "style": {
-                "usingComponents": {
-                    "van-search": "/wxcomponents/vant/search/index",
-                    "van-tab": "/wxcomponents/vant/tab/index",
-                    "van-tabs": "/wxcomponents/vant/tabs/index",
-                    "van-cell": "/wxcomponents/vant/cell/index"
-                },
-                "navigationBarTitleText": "接单中心"
-            }
-        },
-        {
-            "path": "pages/recOrder/tpl/item",
-            "style": {
-                "usingComponents": {
+        },	
+		{
+			"path":"pages/home/home",
+			"style":{
+				"navigationBarTitleText":"主页"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"usingComponents": {
+					"van-search": "/wxcomponents/vant/search/index",
+					"van-tab": "/wxcomponents/vant/tab/index",
+					"van-tabs": "/wxcomponents/vant/tabs/index",
+					"van-cell": "/wxcomponents/vant/cell/index"
+				},
+				"navigationBarTitleText": "接单中心"
+			}
+		},
+		{
+			"path": "pages/order/tpl/item",
+			"style": {
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/cell/index",
+					"van-button": "/wxcomponents/vant/button/index"
+				},
+				"navigationBarTitleText": "接单中心"
+			}
+		},
+		{
+			"path": "pages/order/tpl/orderDetail",
+			"style": {
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/cell/index",
+					"van-button": "/wxcomponents/vant/button/index",
+					"van-icon": "/wxcomponents/vant/icon/index",
+                    "van-transition": "/wxcomponents/vant/transition/index"
+				},
+				"navigationBarTitleText": "工单详情"
+			}
+		},
+		{
+			"path": "pages/order/tpl/dealForm",
+			"style": {
+				"usingComponents": {
+                    "van-icon": "/wxcomponents/vant/icon/index",
+                    "van-datetime-picker": "/wxcomponents/vant/datetime-picker/index",
+                    "van-picker": "/wxcomponents/vant/picker/index",
+                    "van-popup": "/wxcomponents/vant/popup/index",
+                    "van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
+                    "van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
+                    "van-switch": "/wxcomponents/vant/switch/index",
+                    "van-radio": "/wxcomponents/vant/radio/index",
+                    "van-radio-group": "/wxcomponents/vant/radio-group/index",
                     "van-cell": "/wxcomponents/vant/cell/index",
-                    "van-button": "/wxcomponents/vant/button/index"
-                },
-                "navigationBarTitleText": "接单中心"
-            }
-        },
+                    "van-cell-group": "/wxcomponents/vant/cell-group/index",
+                    "van-action-sheet": "/wxcomponents/vant/action-sheet/index",
+                    "van-field": "/wxcomponents/vant/field/index",
+					"van-button": "/wxcomponents/vant/button/index"
+				},
+				"navigationBarTitleText": "工单详情"
+			}
+		},
         {
             "path": "pages/main/main",
             "style": {
