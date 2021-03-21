@@ -22,7 +22,8 @@
       ]},
       {"label": "解决方式", "key": "solution", "value": "", "type": "text"},
       {"label": "处理过程", "key": "process", "value": "", "type": "textarea"},
-      {"label": "事件过程", "key": "eveprocess", "value": "", "type": "textarea"},
+      {"label": "事件原因", "key": "eveprocess", "value": "", "type": "textarea"},
+      {"label": "附件", "key": "files", "value": "", "type": "file"},
       {"label": "存入知识库", "key": "issave", "value": false, "type": "switch"}
     ]
   

@@ -175,6 +175,7 @@ import dealFrom from './dealForm'
         position: fixed;
         background: #fff;
         height: 360rpx;
+        padding-bottom: 30rpx;
         width: 100vw;
         bottom: 0;
         left: 0;

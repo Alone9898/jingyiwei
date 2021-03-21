@@ -16,7 +16,7 @@
                     :title="item.label" 
                     :value='submitForm[item.key]' 
                     is-link 
-                    @click="submitForm[item.show] = true; $forceUpdate()" />
+                    @click="cellClick(arguments, item, true)" />
                     <van-popup
                         :show="submitForm[item.show]"
                         :close-on-click-overlay='false'
@@ -26,12 +26,12 @@
                             <van-picker 
                             show-toolbar 
                             :columns="item.option" 
-                            @cancel="submitForm[item.show] = false; $forceUpdate()"
+                            @cancel="cellClick(arguments, item, false)"
                             @confirm="onConfirm(arguments, item)" />
                         </van-popup>
                 </view>
                 <!-- 上传 -->
-                <view v-if="item.type === 'file'">
+                <view v-if="item.type === 'file'" class="file">
                       <van-field
                         :value="''"
                         center
@@ -39,18 +39,23 @@
                         label="附件"
                         :border="true"
                     >
-                        <van-button slot="button" round plain size="small" type="info">上 传</van-button>
-                        <van-button style="margin: 0 60rpx" slot="button" round size="small" type="info">拍 照</van-button>
+                        <van-button slot="button" round plain size="small" type="info" @click="uploadFile">上 传</van-button>
+                        <van-button style="margin: 0 60rpx" slot="button" round size="small" type="info" @click="takePicture">拍 照</van-button>
                     </van-field>
+                    <view class="file_list">
+                        <view v-for="(file, filindex) in submitForm.fileList" :key="filindex">
+                            <text>{{ file.name || file.path.split('//')[1] }}</text>
+                            <van-icon name="clear" @click="deleteFile(filindex)"/>
+                        </view>
+                    </view>
                 </view>
                 <!-- 时间选择 -->
-                
-                <!-- <view v-if="item.type === 'time'">
+                <view v-if="item.type === 'time'">
                     <van-cell 
                     :title="item.label" 
                     :value='submitForm[item.key]' 
                     is-link 
-                    @click.stop="submitForm[item.show] = true; $forceUpdate()" />
+                    @click="cellClick(arguments, item, true)" />
                     <van-popup
                         :show="submitForm[item.show]"
                         :close-on-click-overlay='false'
@@ -61,10 +66,10 @@
                             type="datetime"
 							show-toolbar
                             :value="new Date().getTime()"
-                            @cancel="submitForm[item.show] = false; $forceUpdate()"
+                            @cancel="cellClick(arguments, item, false)"
                             @confirm="onConfirm(arguments, item)"/>
                         </van-popup>
-                </view> -->
+                </view>
                 <!-- 文本输入 -->
                 <view v-if="item.type === 'text'">
                     <van-field
@@ -158,17 +163,51 @@ import dealFormConfig from './dealForm.config.json'
                 if (!this.clickType) return false;
                 this.fromConfig = dealFormConfig[this.clickType];
                 this.fromConfig.form.forEach(ele => {
-                    if (ele.hasOwnProperty('show')) {
-                        this.submitForm[ele.show] = false;
-                    }
+                    if (ele.hasOwnProperty('show')) this.submitForm[ele.show] = false;
+                    if (ele.type === 'file') this.submitForm.fileList = [];
                     this.submitForm[ele.key] = ele.value;
                 });
                 return this.nodeId;
             }
         },
         methods: {
-            timeclick(arg, item) {
-                this.submitForm[item.show] = true; 
+            // 删除文件
+            deleteFile(index) {
+                this.submitForm.fileList = this.submitForm.fileList.filter((cur, curindex) => curindex !== index);
+                this.$forceUpdate();
+            },
+            // 文件上传
+            uploadFile() {
+                let _t = this;
+                wx.chooseMessageFile({
+                    count: 1,
+                    type: 'all',
+                    success: function(res) {
+                        console.log('tempFiles', res);
+                        _t.submitForm.fileList = [..._t.submitForm.fileList, ...res.tempFiles];
+                        _t.$forceUpdate();
+                        console.log('_t.submitForm.fileList', _t.submitForm.fileList);
+                    }
+                })
+            },
+            // 拍照
+            takePicture() {
+                let _t = this;
+                wx.chooseImage({
+                    count: 3,
+                    sizeType: ['original', 'compressed'],
+                    sourceType: ['album', 'camera'],
+                    success: function(res) {
+                        console.log('tempFilePaths', res);
+                        _t.submitForm.fileList = [..._t.submitForm.fileList, ...res.tempFiles];
+                        _t.$forceUpdate();
+                        console.log('_t.submitForm.fileList', _t.submitForm.fileList);
+                    }
+                })
+            },
+            // 点击时间选择和下拉选择的cell单元格
+            cellClick(arg, item, bool) {
+                this.submitForm[item.show] = bool; 
                 this.$forceUpdate()
             },
             // 单选点击
@@ -183,7 +222,7 @@ import dealFormConfig from './dealForm.config.json'
             },
             // 下拉选择确认
             onConfirm(arg, item) {
-                this.submitForm[item.key] = (item.type === 'pick' ? arg[0].detail.value.text : arg[0].detail);
+                this.submitForm[item.key] = (item.type === 'pick' ? arg[0].detail.value.text : this.$tool.dateFormat("YYYY-MM-DD hh:mm:ss", arg[0].detail));
                 this.submitForm[item.show] = false;
                 this.$forceUpdate();
             },
@@ -210,7 +249,7 @@ import dealFormConfig from './dealForm.config.json'
     .cell_box{
         display: flex;
         align-items: center;
-        padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);;
+        padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);
         &>text:nth-child(1){
             margin-right: 30rpx;
             font-size: 28rpx;
@@ -221,6 +260,24 @@ import dealFormConfig from './dealForm.config.json'
         padding: 40rpx 40rpx 10rpx;
         position: sticky;
         top: 100%;
+    }
+    .file{
+        .file_list{
+            view{
+                font-size: 28rpx;
+                padding: 20rpx 40rpx 20rpx 200rpx;
+                color: var(--field-label-color,#646566);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text{
+                    width: 50vw;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
     }
 }
 </style>
