@@ -87,7 +87,7 @@ export default {
 			//图列配置 legendAs
 			legend: {
 				show: true, //是否显示各类别的图例标识
-				position: 'right',
+				position: 'bottom',
                 lineHeight:20,
 				padding: 10,
 				margin: 0
