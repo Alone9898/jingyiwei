@@ -37,11 +37,23 @@
 .bb{
 	box-sizing: border-box;
 }
+.mt-5{
+    margin-top: 5px;
+}
+.mt-10{
+    margin-top: 10px;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
 .mb-15{
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 .mb-20{
 	margin-bottom: 20px;
+}
+.mb-30{
+	margin-bottom: 30px;
 }
 .mb-40{
 	margin-bottom: 40px;
@@ -52,8 +64,32 @@
 .ml-30{
     margin-left: 30px;
 }
+.pl-10{
+    padding-left: 10px;
+}
+.pr-10{
+    padding-right: 10px;
+}
+.pr-35{
+    padding-right: 35px;
+}
+.pt-10{
+    padding-top: 10px;
+}
+.pt-15{
+    padding-top: 15px;
+}
+.pb-10{
+    padding-bottom: 10px;
+}
 .text-white{
     color: #fff;
+}
+.text-black{
+    color: #3f3f3f;
+}
+.text-bold{
+    font-weight: bold;
 }
 .text-center{
     text-align: center;

@@ -21,7 +21,7 @@
 		data() {
 			return {
 				//
-				active: 2,
+				active: 0,
 				tabar: [{
 						id: 0,
 						normal: '/static/tabar/msg_normal.png',
@@ -52,13 +52,14 @@
 		},
         created() {
            this.active=this.$store.state.tabActive
+           uni.hideTabBar({})//隐藏所有bar
         },
 		methods: {
 			//
 			tab(e, path) {
                 if(this.active!==e){
                   this.$store.commit('tabarActive',e)
-                  uni.reLaunch({
+                  uni.switchTab({
                       url: path
                   })  
                 }
