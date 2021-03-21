@@ -92,7 +92,10 @@ export default {
 				padding: 10,
 				margin: 0
 			},
-
+            //titleAs
+			title: {
+				name: ''
+			},
 			//扩展配置 extraAs 详情请看 http://doc.ucharts.cn/1172130
 			extra: {
 				pie: {
