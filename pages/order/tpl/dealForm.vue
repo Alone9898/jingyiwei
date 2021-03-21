@@ -45,7 +45,7 @@
                     <view class="file_list">
                         <view v-for="(file, filindex) in submitForm.fileList" :key="filindex">
                             <text>{{ file.name || file.path.split('//')[1] }}</text>
-                            <van-icon name="clear" @click="deleteFile(filindex)"/>
+                            <van-icon name="clear" size="24px" @click="deleteFile(filindex)"/>
                         </view>
                     </view>
                 </view>
