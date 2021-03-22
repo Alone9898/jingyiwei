@@ -28,7 +28,8 @@
         {
             "path" : "pages/home/home",
             "style" : {
-                "navigationBarTitleText" : "主页"
+                "navigationBarTitleText" : "主页",
+                "navigationStyle" : "custom"
             }
         },
         {
@@ -96,8 +97,7 @@
                     "van-icon" : "/wxcomponents/vant/icon/index",
                     "van-image" : "/wxcomponents/vant/image/index"
                 },
-                "navigationStyle" : "custom",
-                "navigationBarTitleText" : "主页"
+                "navigationStyle" : "custom"
             }
         },
         {
