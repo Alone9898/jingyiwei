@@ -1,5 +1,5 @@
 
 
 export default {
-    login: '/ywt/busOrderInfo/getStatistics'
+    LOGIN: '/ywt/busOrderInfo/getStatistics'
 }
