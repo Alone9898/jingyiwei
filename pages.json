@@ -126,6 +126,15 @@
                 }
             }
         }
+        ,{
+            "path" : "pages/myFunction/repairService/repairService",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "故障报修",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
     "globalStyle" : {
         "navigationBarTextStyle" : "black",
