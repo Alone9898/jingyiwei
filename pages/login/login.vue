@@ -8,7 +8,7 @@
         </view>
         <view class="padding" style="margin-top: 110upx;">
             <view>
-                    <van-field border="false" maxlength='11' @input="account=$event.mp.detail" :value="account" center clearable label="+86" placeholder="请输入手机号"
+                    <van-field border="false" maxlength='11' @input="account=$event.mp.detail" :value="account" center clearable label="手机号" placeholder="请输入手机号"
                         use-button-slot>
                         <van-button slot="button" @tap="bindSms" size="small" :style="btnStatus? 'color:#AAAAAA':''"
                             type="primary">
@@ -16,7 +16,6 @@
                         </van-button>
                     </van-field>
                     <view style="padding-top: 40upx;">
-                        
                     </view>
                 <van-field center :value="code" @input="code=$event.mp.detail" clearable label="验证码" placeholder="请输入验证码">
                 </van-field :border="false">
@@ -39,7 +38,7 @@
                 isActive: 1,
                 providerList: [],
                 hasProvider: false,
-                account: '',
+                account: '18888888888',
                 checked:false,
                 isDevtools: false,
                 code: '',
@@ -61,41 +60,41 @@
                  * 客户端对账号信息进行一些必要的校验。
                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
                  */
-                console.log(this.code)
-                if (this.account.length < 11) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '手机号最短为 11 个字符'
-                    });
-                    return;
-                }
-                if (this.code.length < 6) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '验证码最短为 6 个字符'
-                    });
-                    return;
-                }
-                if (!this.checked) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '请阅读并同意《用户使用手册》'
-                    });
-                    return;
-                }
+                // if (this.account.length < 11) {
+                //     uni.showToast({
+                //         icon: 'none',
+                //         title: '手机号最短为 11 个字符'
+                //     });
+                //     return;
+                // }
+                // if (this.code.length < 6) {
+                //     uni.showToast({
+                //         icon: 'none',
+                //         title: '验证码最短为 6 个字符'
+                //     });
+                //     return;
+                // }
+                // if (!this.checked) {
+                //     uni.showToast({
+                //         icon: 'none',
+                //         title: '请阅读并同意《用户使用手册》'
+                //     });
+                //     return;
+                // }
                 /**
                  * 下面简单模拟下服务端的处理
                  * 检测用户账号密码是否在已注册的用户列表中
                  * 实际开发中，使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
                  */
                 axios({
-                    url: "user/login",
+                    url: "ywt/loginWeChat",
                     data: {
                         phone: this.account,
                         code: this.password,
                         openid: this.openid,
                     }
                 }).then(res => {
+                    console.log(111)
                     if (res.code === 200) {
                         uni.showToast({
                             icon: "none",

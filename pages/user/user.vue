@@ -48,18 +48,12 @@
                     </view>
                 </view>
             </view>
+            <button open-type="getPhoneNumber" @getphonenumber="onGetPhoneNumber">获取手机号</button>
         </view>
-        <van-dialog
-        use-slot
-        title="本月工单处理"
-        :show="orderChartShow"
-        :show-cancel-button='false'
-        :show-confirm-button='false'
-        :close-on-click-overlay='true'
-        @close="onClose"
-        >
+        <van-dialog use-slot title="本月工单处理" :show="orderChartShow" :show-cancel-button='false' :show-confirm-button='false'
+            :close-on-click-overlay='true' @close="onClose">
             <div style="width: 600rpx;height: 400rpx;margin: 40rpx auto">
-              <pie-chart :dataAs="pieData" canvasId="index_pie_1" :width="580" :height="420"/>
+                <pie-chart :dataAs="pieData" canvasId="index_pie_1" :width="580" :height="420" />
             </div>
         </van-dialog>
         <tabbar></tabbar>
@@ -71,8 +65,10 @@
         mapState,
         mapMutations
     } from 'vuex'
-     import tabbar from "@/components/tabar/tabar.vue"
-     import PieChart from '@/components/stan-ucharts/PieChart.vue'
+    import {axios} from '@/util/index.js'
+    import tabbar from "@/components/tabar/tabar.vue"
+    import PieChart from '@/components/stan-ucharts/PieChart.vue'
+    import WXBizDataCrypt from "@/config/WXBizDataCrypt.js";
     export default {
         data() {
             return {
@@ -88,29 +84,28 @@
                     2: 'revOrder'
                 },
                 pieData: {
-                	//饼状图数据
-                	series: [
-                		{
-                			name: '待审核',
-                			data: 50
-                		},
-                		{
-                			name: '已完成',
-                			data: 20
-                		},
-                		{
-                			name: '处理中',
-                			data: 18
-                		},
-                		{
-                			name: '暂停处理',
-                			data: 1
-                		},
-                		{
-                			name: '待评价',
-                			data: 8
-                		}
-                	]
+                    //饼状图数据
+                    series: [{
+                            name: '待审核',
+                            data: 50
+                        },
+                        {
+                            name: '已完成',
+                            data: 20
+                        },
+                        {
+                            name: '处理中',
+                            data: 18
+                        },
+                        {
+                            name: '暂停处理',
+                            data: 1
+                        },
+                        {
+                            name: '待评价',
+                            data: 8
+                        }
+                    ]
                 }
             };
         },
@@ -137,10 +132,52 @@
             let token = getApp().globalData.token
             if (token !== "") {
                 this.loginStatus = true
-                // this.getAccountInfo()
+               
             }
         },
+        onload() {
+            this.getAccountInfo()
+            wx.login({
+                success: (res) => {
+                    if (res.code) { //微信登录成功 已拿到code  
+                        // uni.request({  
+                        //     url: 'https://www.xx123.com//common/unionId.do',        //演示地址，请以你的后端接口为准  
+                        //     method:'POST',  
+                        //     data: {  
+                        //         code: res.code              //wx.login 登录成功后的code  
+                        //     },  
+                        //     success: (cts) => {  
+                        //         // 换取成功后 暂存这些数据 留作后续操作  
+                        //         this.openid=cts.data.openid     //openid 用户唯一标识  
+                        //         this.unionid=cts.data.unionid     //unionid 开放平台唯一标识  
+                        //         this.session_key=cts.data.session_key     //session_key  会话密钥  
+                        //     }  
+                        // });  
+                    } else {
+                        console.log('登录失败！' + res.errMsg)
+                    }
+                }
+            })
+        },
         methods: {
+            onGetPhoneNumber(e) {
+                if (e.detail.errMsg == "getPhoneNumber:fail user deny") { //用户决绝授权  
+                    //拒绝授权后弹出一些提示  
+                } else { //允许授权  
+                    console.log(e.detail.encryptedData)
+                    e.detail.encryptedData //加密的用户信息  
+                    e.detail.iv //加密算法的初始向量  时要用到  
+                    let appId = 'wx4f4bc4dec97d474b'
+                    let sessionKey = 'tiihtNczf5v6AKRyjwEUhQ=='
+                    if (e.detail.errMsg == "getPhoneNumber:ok") {
+                        let pc = new WXBizDataCrypt(appId, sessionKey); //wxXXXXXXX为你的小程序APPID  
+                        let data = pc.decryptData(e.detail.encryptedData, e.detail.iv);
+                        console.log(data)
+                    } else {
+                        console.log("用户点击了拒绝")
+                    }
+                }
+            },
             onClose() {
                 this.orderChartShow = false;
             },
@@ -157,8 +194,8 @@
                 }
             },
             getAccountInfo() {
-                this.axios({
-                    url: "account",
+                axios({
+                    url: "/ywt/loginWeChat",
                     header: {
                         token: getApp().globalData.token
                     }
@@ -206,6 +243,7 @@
         align-items: center;
         justify-content: space-around;
         font-size: 20rpx;
+
         &>view {
             background-image: url(../../static/img/chart.png);
             background-size: cover;
@@ -224,11 +262,12 @@
         line-height: 40upx;
         color: rgb(155, 155, 155);
     }
-	.text-xl{
-		display: flex;
+
+    .text-xl {
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
-	}
+    }
 
     .preview {
         height: 160upx;
@@ -236,11 +275,12 @@
         border-radius: 14rpx;
         background: #ffffff;
         box-sizing: border-box;
-		box-shadow: 0px 0px 10px 0px #9c9c9c;
+        box-shadow: 0px 0px 10px 0px #9c9c9c;
+
         image {
             width: 40upx;
             height: 40upx;
-        }	
+        }
 
         .flex {
             &>view {
@@ -251,11 +291,13 @@
                 .imgBox {
                     height: 50rpx;
                     line-height: 50rpx;
-                    image{
+
+                    image {
                         height: 50rpx;
                         width: 50rpx;
                     }
                 }
+
                 .text-dec {
                     font-size: 26rpx;
                     margin-top: 10rpx;
