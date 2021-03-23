@@ -130,6 +130,11 @@
             "path" : "pages/myFunction/repairService/repairService",
             "style" :                                                                                    
             {
+                "usingComponents": {
+                    "van-cell" : "/wxcomponents/vant/cell/index",
+                    "van-cell-group" : "/wxcomponents/vant/cell-group/index",
+                    "van-field" : "/wxcomponents/vant/field/index"
+                },
                 "navigationBarTitleText": "故障报修",
                 "enablePullDownRefresh": false
             }
