@@ -39,7 +39,7 @@
                         </view>
                     </van-cell>
                 </view>
-                <view class="content_btn" v-if="item.orderStatus === '待接'">
+                <view class="content_btn" v-if="item.orderStatus === '待接' && listType === 'recOrder'">
                     <van-button size="small" round type="info">接 单</van-button>
                     <van-button size="small" round type="info">退 单</van-button>
                 </view>
