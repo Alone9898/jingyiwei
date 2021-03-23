@@ -10,7 +10,7 @@
                 background="#fff"
                 placeholder="请输入搜索关键词"
         />
-        <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="init">
+        <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
             <van-tab v-for="(val, key) in tabsConfig" :itemList='itemList' :key="key" :title="val" :name="key">
                 <ITEM :listType='listType'></ITEM>
             </van-tab>
@@ -50,22 +50,34 @@
                         all: '全部',
                         pending: '待审核'
                     }
-                }
+                },
             }
         },
         methods: {
-            init(event) {
+            tabClick(event){
+                 let templateType = (event.detail.index + 1)
+                 this.init(templateType)
+            },
+            init(templateType) {
                 let url=''
                 if(this.listType==='recOrder'){ // 接单中心
                     url='/ywt/busOrderInfo/getWeChatView'
+                    wx.setNavigationBarTitle({
+                      title: '接单中心'
+                    })
                 }else if(this.listType==='myOrder'){ // 我的工单
                     url='/ywt/busOrderInfo/getWeChatView'
+                    wx.setNavigationBarTitle({
+                      title: '我的工单'
+                    })
                 }else{ // 工单审核
                      url='/ywt/busOrderInfo/getWeChatView'
+                     wx.setNavigationBarTitle({
+                       title: '工单审核'
+                     })
                 }
-                let templateType = (event.detail.index + 1)
                 axios({
-                    url: "",
+                    url: url,
                     data: {
                         templateType: templateType,
                         likeQuery: this.queryKeyWord
@@ -104,6 +116,7 @@
             },
         },
         mounted() {
+            this.init(1)
         },
         onLoad: function (option) {
             this.listType = option.type;
