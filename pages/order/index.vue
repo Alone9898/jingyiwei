@@ -49,7 +49,20 @@ import ITEM from './tpl/item'
             }
         },
         methods: {
-            
+           init() {
+               axios({
+                   url: "/ywt/busOrderInfo/getWeChatView",
+                   data: {
+                       templateType: 1,
+                   },
+                   method: 'post'
+               }).then(res => {
+           
+               })
+           },
+        },
+        mounted() {
+            this.init()
         },
         onLoad: function (option) {
             this.listType = option.type;
