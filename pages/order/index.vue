@@ -11,8 +11,8 @@
                 placeholder="请输入搜索关键词"
         />
         <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
-            <van-tab v-for="(val, key) in tabsConfig" :itemList='itemList' :key="key" :title="val" :name="key">
-                <ITEM :listType='listType'></ITEM>
+            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key">
+                <ITEM :listType='listType' :itemList='itemList'></ITEM>
             </van-tab>
         </van-tabs>
     </div>
@@ -83,29 +83,35 @@ import {
                     },
                     method: 'post'
                 }).then(res => {
-                    let tableData = res.list
+                    this.itemList = [];
+                    let tableData = res.body
                     let obj = {}
                     tableData.forEach(item => {
                         obj = {
-                            orderId: '235346453456467',
+                            orderId: item.orderNum,
                             orderAlarm: '紧急',
                             orderRange: '全院',
-                            createTime: '2021-3-2 18:00',
-                            orderStatus: '待接',
+                            createTime: item.createTime,
+                            orderStatus: ['处理中','已完成','未接单'][item.rangeType],
                             orderGroup: '康复维修组',
-                            orderDepart: '后勤保障部-设备维修科',
-                            orderMsgs: [{
-                                label: '故障分类',
-                                content: '工业故障'
-                            },
+                            orderDepart: item.deptId,
+                            orderMsgs: [
+                                {
+                                    label: '故障分类',
+                                    content: '工业故障'
+                                },
                                 {
                                     label: '故障描述',
-                                    content: '设备老化，造成设备无法使用'
+                                    content: item.place
+                                },
+                                {
+                                    label: '报修地址',
+                                    content: item.place
                                 },
                                 {
                                     label: '报障人',
-                                    content: '张三',
-                                    phone: '1847493485'
+                                    content: item.user,
+                                    phone: item.phone
                                 }
                             ]
                         }

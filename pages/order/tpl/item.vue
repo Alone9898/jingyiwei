@@ -209,7 +209,12 @@
                     &>view:nth-child(1) {
                         display: flex;
                         justify-content: space-between;
-
+                        &>text:nth-child(1){
+                            width: 180px;
+                            overflow: hidden;
+                            text-overflow:ellipsis; 
+                            white-space: nowrap;
+                        }
                         &>text:nth-child(2) {
                             margin-right: 20rpx;
                             font-weight: 600;
