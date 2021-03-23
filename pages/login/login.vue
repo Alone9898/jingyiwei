@@ -10,20 +10,20 @@
             <view>
                     <van-field border="false" maxlength='11' @input="account=$event.mp.detail" :value="account" center clearable label="手机号" placeholder="请输入手机号"
                         use-button-slot>
-                        <van-button slot="button" @tap="bindSms" size="small" :style="btnStatus? 'color:#AAAAAA':''"
+                        <!-- <van-button slot="button" @tap="bindSms" size="small" :style="btnStatus? 'color:#AAAAAA':''"
                             type="primary">
                             {{btnText}}
-                        </van-button>
+                        </van-button> -->
                     </van-field>
                     <view style="padding-top: 40upx;">
                     </view>
-                <van-field center :value="code" @input="code=$event.mp.detail" clearable label="验证码" placeholder="请输入验证码">
+              <!--  <van-field center :value="code" @input="code=$event.mp.detail" clearable label="验证码" placeholder="请输入验证码"> -->
                 </van-field :border="false">
                 </van-cell-group>
-                <view class="flex align-center" style="margin-top: 90upx;padding-left: 20upx;">
+                <!-- <view class="flex align-center" style="margin-top: 90upx;padding-left: 20upx;">
                     <van-checkbox v-model="checked" @change="checked=$event.detail" checked-color="#F99C50"></van-checkbox>
                     <text class="yesText">我已阅读并同意<text>《用户使用协议》</text></text>
-                </view>
+                </view> -->
                 <view class="bindLogin" @tap="bindLogin">登录</view>
             </view>
         </view>
@@ -38,7 +38,7 @@
                 isActive: 1,
                 providerList: [],
                 hasProvider: false,
-                account: '18888888888',
+                account: '18222222222',
                 checked:false,
                 isDevtools: false,
                 code: '',
@@ -60,13 +60,13 @@
                  * 客户端对账号信息进行一些必要的校验。
                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
                  */
-                // if (this.account.length < 11) {
-                //     uni.showToast({
-                //         icon: 'none',
-                //         title: '手机号最短为 11 个字符'
-                //     });
-                //     return;
-                // }
+                if (this.account.length < 11) {
+                    uni.showToast({
+                        icon: 'none',
+                        title: '手机号最短为 11 个字符'
+                    });
+                    return;
+                }
                 // if (this.code.length < 6) {
                 //     uni.showToast({
                 //         icon: 'none',
@@ -89,25 +89,24 @@
                 axios({
                     url: "ywt/loginWeChat",
                     data: {
-                        phone: this.account,
-                        code: this.password,
-                        openid: this.openid,
+                        phoneNum: this.account,
+                        // code: this.password,
+                        // openid: this.openid,
                     }
                 }).then(res => {
-                    console.log(111)
-                    if (res.code === 200) {
+                    if (res.code === 0) {
                         uni.showToast({
                             icon: "none",
-                            title: res.msg
+                            title: '登录成功'
                         })
                         uni.setStorage({
-                            key: 'token',
-                            data: res.data.token,
-                            success: function() {
-                                getApp().globalData.token = res.data.token
-                                getApp().globalData.account = res.data.account
+                            key: 'userInfo',
+                            data: res.body,
+                            success: function(res) {
                                 setTimeout(() => {
-                                    uni.navigateBack()
+                                   uni.switchTab({
+                                   		url: '/pages/user/user'
+                                  });
                                 }, 1000);
                             }
                         });
@@ -183,7 +182,9 @@
 </script>
 <style lang="scss" scoped>
     .content {
+        height: 100vh;
         padding: 80upx 60upx;
+        box-sizing: border-box;
     }
 
     .tab_abc {

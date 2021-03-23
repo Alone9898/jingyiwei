@@ -30,7 +30,7 @@ import ITEM from './tpl/item'
                 orderType: {
                     recOrder: {
                         all: '全部',
-                        recep: '接待',
+                        recep: '未接单',
                         proce: '处理中',
                         comment: '待评价',
                         pending: '待审核'
@@ -49,7 +49,20 @@ import ITEM from './tpl/item'
             }
         },
         methods: {
-            
+           init() {
+               axios({
+                   url: "/ywt/busOrderInfo/getWeChatView",
+                   data: {
+                       templateType: 1,
+                   },
+                   method: 'post'
+               }).then(res => {
+           
+               })
+           },
+        },
+        mounted() {
+            this.init()
         },
         onLoad: function (option) {
             this.listType = option.type;

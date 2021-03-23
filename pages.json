@@ -28,7 +28,8 @@
         {
             "path" : "pages/home/home",
             "style" : {
-                "navigationBarTitleText" : "主页"
+                "navigationBarTitleText" : "主页",
+                "navigationStyle" : "custom"
             }
         },
         {
@@ -96,8 +97,7 @@
                     "van-icon" : "/wxcomponents/vant/icon/index",
                     "van-image" : "/wxcomponents/vant/image/index"
                 },
-                "navigationStyle" : "custom",
-                "navigationBarTitleText" : "主页"
+                "navigationStyle" : "custom"
             }
         },
         {
@@ -125,6 +125,20 @@
                     "van-circle" : "/wxcomponents/vant/circle/index"
                 }
             }
+        }
+        ,{
+            "path" : "pages/myFunction/repairService/repairService",
+            "style" :                                                                                    
+            {
+                "usingComponents": {
+                    "van-cell" : "/wxcomponents/vant/cell/index",
+                    "van-cell-group" : "/wxcomponents/vant/cell-group/index",
+                    "van-field" : "/wxcomponents/vant/field/index"
+                },
+                "navigationBarTitleText": "故障报修",
+                "enablePullDownRefresh": false
+            }
+            
         }
     ],
     "globalStyle" : {
