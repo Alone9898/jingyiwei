@@ -113,7 +113,7 @@
                 </view>
             </van-cell-group>
             <view class="btn_box">
-                <van-button round type="info" block>{{ fromConfig.submit.label }}</van-button>
+                <van-button round type="info" block @click="submit">{{ fromConfig.submit.label }}</van-button>
             </view>
         </view>
     </van-action-sheet>
@@ -229,6 +229,9 @@ import dealFormConfig from './dealForm.config.json'
             // 关闭表单弹窗
             onClose() {
                 this.$parent.nodeId = 0;
+            },
+            submit() {
+                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm})
             }
             
         },
