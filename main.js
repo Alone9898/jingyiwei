@@ -9,6 +9,9 @@ Vue.config.productionTip = false
 import Tool from "./util/tool";
 Vue.prototype.$tool = Tool;
 
+import request from './util/request'
+Vue.prototype.$api = request
+
 App.mpType = 'app'
 
 const app = new Vue({
