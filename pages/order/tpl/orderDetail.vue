@@ -27,7 +27,7 @@
         <view class="bottom_btn">
             <van-button round :plain="listType !== 'recOrder'" block v-for="(cur, index) in btnConfig[listType]" :key="index" type="info" @click="dealOrder(cur)">{{ cur.label }}</van-button>
         </view>
-        <deal-from v-if="listType === 'myOrder'" :nodeId='nodeId' :clickType='clickType'></deal-from>
+        <deal-from v-if="listType === 'myOrder'" :nodeId='nodeId' :clickType='clickType' :orderId='orderId'></deal-from>
     </div>
 </template>
 

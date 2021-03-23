@@ -19,11 +19,18 @@
 </template>
 
 <script>
+<<<<<<< HEAD
     import ITEM from './tpl/item'
     import {
         axios
     } from '@/util/index.js'
 
+=======
+import ITEM from './tpl/item'
+import {
+        axios
+    } from '@/util/index.js'
+>>>>>>> d91df8aecf510aa74911af58f7a3397cb995479d
     export default {
         components: {ITEM},
         data() {
