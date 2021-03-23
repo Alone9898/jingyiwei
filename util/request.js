@@ -68,7 +68,8 @@ let buildRequestData = (data) => {
     result.method = data.method ? data.method : "GET";
     result.data = data.data || {};
     result.header = {
-        "Content-Type":  data.contentType ? data.contentType : "application/json;charset=utf-8"
+        "Content-Type":  data.contentType ? data.contentType : "application/json;charset=utf-8",
+        'token': uni.getStorageSync('userInfo').token || ''
     }
 
     return result;

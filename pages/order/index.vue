@@ -20,6 +20,9 @@
 
 <script>
 import ITEM from './tpl/item'
+import {
+        axios
+    } from '@/util/index.js'
     export default {
         components: { ITEM },
         data() {

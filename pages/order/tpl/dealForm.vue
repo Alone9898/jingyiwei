@@ -77,6 +77,7 @@
                         :value="submitForm[item.key]"
                         input-align='right'
                         center
+                        @input='textInput(arguments, item)'
                         :placeholder="'请输入' + item.label"
                         :border="false"/>
                 </view>
@@ -87,6 +88,7 @@
                         :label="item.label"
                         input-align='right'
                         type="textarea"
+                        @input='textInput(arguments, item)'
                         :placeholder="'请输入' + item.label"
                         :autosize="{
                             maxHeight: 100, minHeight: 50
@@ -147,6 +149,10 @@ import dealFormConfig from './dealForm.config.json'
             clickType: {
                 type: String,
                 default: ''
+            },
+            orderId: {
+                type: String,
+                default: ''
             }
         },
         data() {
@@ -167,10 +173,20 @@ import dealFormConfig from './dealForm.config.json'
                     if (ele.type === 'file') this.submitForm.fileList = [];
                     this.submitForm[ele.key] = ele.value;
                 });
+                this.fromConfig.form.forEach(cur => {
+                    this.submitForm[cur.key] = ''
+                })
+                console.log('submitForm', this.submitForm);
                 return this.nodeId;
             }
         },
         methods: {
+            // 输入框
+            textInput(arg, item) {
+                console.log(arg, item);
+                this.submitForm[item.key] = arg[0].detail;
+                this.$forceUpdate();
+            },
             // 删除文件
             deleteFile(index) {
                 this.submitForm.fileList = this.submitForm.fileList.filter((cur, curindex) => curindex !== index);
@@ -230,8 +246,9 @@ import dealFormConfig from './dealForm.config.json'
             onClose() {
                 this.$parent.nodeId = 0;
             },
+            // 提交
             submit() {
-                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm})
+                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId})
             }
             
         },
