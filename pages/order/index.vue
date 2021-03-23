@@ -5,28 +5,33 @@
 <template>
     <div class='index_body'>
         <van-search
-        :value="queryKeyWord"
-        shape="round"
-        background="#fff"
-        placeholder="请输入搜索关键词"
+                :value="queryKeyWord"
+                shape="round"
+                background="#fff"
+                placeholder="请输入搜索关键词"
         />
-        <van-tabs active="all" sticky animated swipeable color='#409EFF'>
-            <van-tab v-for="(val, key) in tabsConfig" :key="key" :title="val" :name="key">
-                    <ITEM :listType='listType'></ITEM>
+        <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="init">
+            <van-tab v-for="(val, key) in tabsConfig" :itemList='itemList' :key="key" :title="val" :name="key">
+                <ITEM :listType='listType'></ITEM>
             </van-tab>
         </van-tabs>
     </div>
 </template>
 
 <script>
-import ITEM from './tpl/item'
+    import ITEM from './tpl/item'
+    import {
+        axios
+    } from '@/util/index.js'
+
     export default {
-        components: { ITEM },
+        components: {ITEM},
         data() {
             return {
                 queryKeyWord: '',
                 listType: '',
                 tabsConfig: {},
+                itemList: [],
                 orderType: {
                     recOrder: {
                         all: '全部',
@@ -49,26 +54,63 @@ import ITEM from './tpl/item'
             }
         },
         methods: {
-           init() {
-               axios({
-                   url: "/ywt/busOrderInfo/getWeChatView",
-                   data: {
-                       templateType: 1,
-                   },
-                   method: 'post'
-               }).then(res => {
-           
-               })
-           },
+            init(event) {
+                let url=''
+                if(this.listType==='recOrder'){ // 接单中心
+                    url='/ywt/busOrderInfo/getWeChatView'
+                }else if(this.listType==='myOrder'){ // 我的工单
+                    url='/ywt/busOrderInfo/getWeChatView'
+                }else{ // 工单审核
+                     url='/ywt/busOrderInfo/getWeChatView'
+                }
+                let templateType = (event.detail.index + 1)
+                axios({
+                    url: "",
+                    data: {
+                        templateType: templateType,
+                        likeQuery: this.queryKeyWord
+                    },
+                    method: 'post'
+                }).then(res => {
+                    let tableData = res.list
+                    let obj = {}
+                    tableData.forEach(item => {
+                        obj = {
+                            orderId: '235346453456467',
+                            orderAlarm: '紧急',
+                            orderRange: '全院',
+                            createTime: '2021-3-2 18:00',
+                            orderStatus: '待接',
+                            orderGroup: '康复维修组',
+                            orderDepart: '后勤保障部-设备维修科',
+                            orderMsgs: [{
+                                label: '故障分类',
+                                content: '工业故障'
+                            },
+                                {
+                                    label: '故障描述',
+                                    content: '设备老化，造成设备无法使用'
+                                },
+                                {
+                                    label: '报障人',
+                                    content: '张三',
+                                    phone: '1847493485'
+                                }
+                            ]
+                        }
+                        this.itemList.push(obj)
+                    })
+                })
+            },
         },
         mounted() {
-            this.init()
         },
         onLoad: function (option) {
             this.listType = option.type;
+            console.log(option.type)
             this.tabsConfig = this.orderType[option.type];
         }
-        
+
     }
 </script>
 <style lang="scss" scoped>
