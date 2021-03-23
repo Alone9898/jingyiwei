@@ -49,6 +49,7 @@
 </template>
 
 <script>
+     import {axios} from '@/util/index.js'
     export default {
         props: {
             listType: {
@@ -64,7 +65,7 @@
                     "常规": 'normal'
                 },
                 orderStatusConfig: {
-                    "待接": "recep",
+                    "未接单": "recep",
                     "处理中": "proce",
                     "待评价": "comm",
                     "待审核": "pend",
@@ -136,8 +137,25 @@
                 uni.navigateTo({
                     url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType
                 })
+            },
+            init(){
+                console.log(this.listType)
+                axios({
+                    url: "/ywt/busOrderInfo/getWeChatView",
+                    data: {
+                        templateType: 1,
+                        // code: this.password,
+                        // openid: this.openid,
+                    },
+                    method:'post'
+                }).then(res => {
+                    
+                })
             }
         },
+        mounted() {
+            this.init()
+        }
     }
 </script>
 <style lang="scss" scoped>

@@ -11,7 +11,7 @@
                             <text style="color:#000">登录/注册</text>
                         </navigator>
                         <text class="member" v-if="loginStatus">
-                            部门：信息部
+                            {{}}
                         </text>
                     </view>
                 </view>
@@ -48,7 +48,7 @@
                     </view>
                 </view>
             </view>
-            <button open-type="getPhoneNumber" @getphonenumber="onGetPhoneNumber">获取手机号</button>
+           <!-- <button open-type="getPhoneNumber" @getphonenumber="onGetPhoneNumber">获取手机号</button> -->
         </view>
         <van-dialog use-slot title="本月工单处理" :show="orderChartShow" :show-cancel-button='false' :show-confirm-button='false'
             :close-on-click-overlay='true' @close="onClose">
@@ -129,10 +129,10 @@
             context.draw()
         },
         onShow() {
-            let token = getApp().globalData.token
-            if (token !== "") {
+            let userInfo = uni.getStorageSync('userInfo')
+            if (userInfo.token) {
                 this.loginStatus = true
-               
+                this.account.account_nickname=userInfo.depts[0].name
             }
         },
         onload() {
@@ -206,7 +206,6 @@
                 })
             },
             skip(i) {
-                console.log('i', i);
                 if (!this.loginStatus) {
                     uni.navigateTo({
                         url: "../login/login"
