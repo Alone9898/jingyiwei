@@ -8,7 +8,7 @@
                       运维日报(3月17日)  
                     </view>
                     <view class="time">
-                        星期五 19:24
+                        {{item.time}}
                     </view>
                 </view>
                 <view class="mb-10">
@@ -54,13 +54,23 @@
         },
         mounted() {
             this.globalData = uni.getStorageSync('globalData')
+            this.list()
         },
         methods: {
             details(id){
                 uni.navigateTo({
                     url: '../message/daily/daily?id='+id
                 })
-            }
+            },
+            list(){
+                let data={
+                    pageNum:'1',
+                    pageSize:'100'
+                }
+                let res= this.$api.postDataRequest('DEAL_GET_ODRDERTOTALLIST',{...data})
+                console.log(res)
+                this.msgList=''
+            },  
         }
     }
 </script>
