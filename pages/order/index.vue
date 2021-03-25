@@ -11,7 +11,7 @@
                 placeholder="请输入搜索关键词"
         />
         <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
-            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key">
+            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" info="5">
                 <ITEM :listType='listType' :itemList='itemList'></ITEM>
             </van-tab>
         </van-tabs>
@@ -125,7 +125,6 @@ import {
         },
         onLoad: function (option) {
             this.listType = option.type;
-            console.log(option.type)
             this.tabsConfig = this.orderType[option.type];
         }
 

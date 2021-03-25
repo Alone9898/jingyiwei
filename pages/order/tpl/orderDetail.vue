@@ -11,7 +11,7 @@
                     <view>{{ item.title }}</view>
                 </view>
                 <view class="msg_content">
-                    <view v-for="(cur, ix) in item.msgs" :key="ix">
+                    <view v-for="(cur, ix) in item.msgs" :key="ix" :class="[cur.col || '']">
                         <text class="label">{{ cur.label }}：</text>
                         <text class="value" v-if="cur.type === 'text'">{{ cur.value }}</text>
                         <text class="value" v-if="cur.type === 'audio'">{{ cur.value }}</text>
@@ -64,26 +64,33 @@ import dealFrom from './dealForm'
                     {
                         title: '故障信息',
                         msgs: [
-                            { label: '建单人', value: '张三', type: 'text', source: '' },
+                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
+                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
+                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
+                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
                             { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '来源', value: '电话报修', type: 'text', source: '' },
+                        ]
+                    },
+                    {
+                        title: '接听信息',
+                        msgs: [
+                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
+                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
+                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
+                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
                             { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                            { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                            { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '详细说明', value: '设备老化', type: 'text', source: '' },
                             { label: '来源', value: '电话报修', type: 'text', source: '' },
                         ]
                     },
                     {
                         title: '故障信息',
                         msgs: [
-                            { label: '建单人', value: '张三', type: 'text', source: '' },
-                            { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                            { label: '来源', value: '电话报修', type: 'text', source: '' },
-                        ]
-                    },
-                    {
-                        title: '故障信息',
-                        msgs: [
-                            { label: '建单人', value: '张三', type: 'text', source: '' },
+                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
+                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
+                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
+                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
                             { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
                             { label: '来源', value: '电话报修', type: 'text', source: '' },
                         ]
@@ -116,8 +123,9 @@ import dealFrom from './dealForm'
                 }
             }
         },
-        onLoad: function (option) {
+        onLoad: async function (option) {
             this.orderId = option.orderId;
+            let info = this.$api.postDataRequest('GET_ORDER_INFO', {orderNum: option.orderId});
             this.listType = option.type;
             this.orderMsgList = [JSON.parse(JSON.stringify(this.orderMsg[0]))];
         },
@@ -163,6 +171,10 @@ import dealFrom from './dealForm'
                     color: rgb(144, 144, 144);
                 }
             }
+             &>view.col2{
+                 display: inline-block;
+                 width: 50%;
+             }
         }
     }
     .more_msg{

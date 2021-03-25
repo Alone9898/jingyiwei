@@ -59,8 +59,10 @@ const getUrl = (url, params, base) => {
 
 
 
-  /**
+/**
  * 创建请求配置
+ * @param data 请求配置参数
+ * @returns {object} 完整请求配置
  */
 let buildRequestData = (data) => {
     let result = {};
@@ -68,7 +70,7 @@ let buildRequestData = (data) => {
     result.method = data.method ? data.method : "GET";
     result.data = data.data || {};
     result.header = {
-        "Content-Type":  data.contentType ? data.contentType : "application/json;charset=utf-8",
+        "Content-Type":  data.contentType ? data.contentType : "application/json;charset=utf-8;multipart/form-data",
         'token': uni.getStorageSync('userInfo').token || ''
     }
 
@@ -87,14 +89,14 @@ let Ajax = async (request) => {
     let url = getUrl(request.url, request.urlParam, request.base || 'base'),
         requestData = buildRequestData(request);
     requestData.url = url + '?_date=' + new Date().getTime();
-
-    let _res = await uni.request(requestData).catch(e => {
-        return e.response ? e.response.data : e.response;
+    let _res = {}
+    let res = await uni.request(requestData).then(e => {
+        _res = e[1] ? e[1].data : e;
     });
     uni.hideLoading();
     if (!!_res) {
-        if (_res.code === 200) {
-            return _res.data;
+        if (_res.code === 0) {
+            return _res;
         } else {
             uni.showToast({
                 title: '数据请求异常',

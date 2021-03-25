@@ -248,9 +248,8 @@ import dealFormConfig from './dealForm.config.json'
             },
             // 提交
             submit() {
-                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId})
+                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId});
             }
-            
         },
         created() {
 
