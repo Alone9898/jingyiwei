@@ -5,23 +5,23 @@
             <view class="msg_item text-black bg-white bb mb-30" v-for="item in msgList" @click="details(1)">
                 <view class="flex fs align-center mb-20">
                     <view class=" text-bold">
-                      运维日报(3月17日)  
+                      运维日报
                     </view>
                     <view class="time">
                         {{item.time}}
                     </view>
                 </view>
                 <view class="mb-10">
-                    通话0次 (来电0次, 呼出0次, 未接0次)
+                    通话{{item.value.exhale}}次 (来电{{item.value.exhale}}次, 呼出{{item.value.exhale}}次, 未接{{item.value.missed}}次)
                 </view>
                 <view class="mb-10">
-                    创建工单2个
+                    创建工单{{item.value.create}}个
                 </view>
                 <view class="mb-10">
-                   完成工单2个
+                   完成工单{{item.value.complete}}个
                 </view>
                 <view class="mb-20">
-                   电话找人0次
+                   电话找人{{item.value.look}}次
                 </view>
                 <van-divider customStyle="margin: 0 0 15px 0;" />
                 <view class="flex align-center space-between item mb-10 pl-10">
@@ -37,15 +37,14 @@
 <script>
     import tabbar from "@/components/tabar/tabar.vue"
     import navBar from "@/components/navBar/navBar.vue"
+    import {
+            axios
+        } from '@/util/index.js'
     export default {
         data() {
             return {
                 globalData: {},
-                msgList:[
-                    {},
-                    {},
-                    {}
-                ]
+                msgList:[]
             }
         },
         components: {
@@ -67,9 +66,18 @@
                     pageNum:'1',
                     pageSize:'100'
                 }
-                let res= this.$api.postDataRequest('DEAL_GET_ODRDERTOTALLIST',{...data})
-                console.log(res)
-                this.msgList=''
+              axios({
+                  url: '/ywt/busOrderStatistics/getOrderTotalList',
+                  data: {
+                      ...data
+                  },
+                  method: 'post'
+              }).then(res => {
+                  this.msgList=res.body.list
+                  this.msgList.forEach(item=>{
+                      item.value=JSON.parse(item.value)
+                  })
+              })
             },  
         }
     }
@@ -78,7 +86,6 @@
 <style lang="scss" scoped>
     .content {
         width: 100%;
-        background: #000;
         padding: 0 15px 100px 15px;
         box-sizing: border-box;
         .navBar {

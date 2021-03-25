@@ -68,8 +68,7 @@ let buildRequestData = (data) => {
     result.method = data.method ? data.method : "GET";
     result.data = data.data || {};
     result.header = {
-        "Content-Type":  data.contentType ? data.contentType : "application/json;charset=utf-8",
-        'token': uni.getStorageSync('userInfo').token || ''
+        "Content-Type":  data.contentType ? data.contentType : "application/json;charset=utf-8"
     }
 
     return result;
@@ -93,17 +92,18 @@ let Ajax = async (request) => {
     });
     uni.hideLoading();
     if (!!_res) {
-        if (_res.code === 200) {
-            return _res.data;
-        } else {
-            uni.showToast({
-                title: '数据请求异常',
-                image:'../static/error.png',
-                duration: 1000,
-                mask: true
-            });
-            return Promise.reject(new Error('数据请求异常，请重试'));
-        }
+        return _res.data;
+        // if (_res.code === 200) {
+        //     return _res.data;
+        // } else {
+        //     uni.showToast({
+        //         title: '数据请求异常',
+        //         image:'../static/error.png',
+        //         duration: 1000,
+        //         mask: true
+        //     });
+        //     return Promise.reject(new Error('数据请求异常，请重试'));
+        // }
     } else {
         uni.showToast({
             title: '网络错误，请检查',

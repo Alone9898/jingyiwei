@@ -22,7 +22,7 @@ export const axios = (options)=>{
 			// 请求成功
 			success: (res) => {
 				// 判断请求数据是否成功
-                if (res.data.code === -100 && res.data.msg === "登录过期") {
+                if (res.data.code === -100) {
                     uni.showToast({
                         title: res.data.msg,
                         icon: 'none'
