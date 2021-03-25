@@ -93,7 +93,7 @@ import {
                             orderRange: '全院',
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.rangeType],
-                            orderGroup: '康复维修组',
+                            orderGroup: item.reception,
                             orderDepart: item.deptId,
                             orderMsgs: [
                                 {

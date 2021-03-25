@@ -95,17 +95,18 @@ let Ajax = async (request) => {
     });
     uni.hideLoading();
     if (!!_res) {
-        if (_res.code === 0) {
-            return _res;
-        } else {
-            uni.showToast({
-                title: '数据请求异常',
-                image:'../static/error.png',
-                duration: 1000,
-                mask: true
-            });
-            return Promise.reject(new Error('数据请求异常，请重试'));
-        }
+        return _res.data;
+        // if (_res.code === 200) {
+        //     return _res.data;
+        // } else {
+        //     uni.showToast({
+        //         title: '数据请求异常',
+        //         image:'../static/error.png',
+        //         duration: 1000,
+        //         mask: true
+        //     });
+        //     return Promise.reject(new Error('数据请求异常，请重试'));
+        // }
     } else {
         uni.showToast({
             title: '网络错误，请检查',

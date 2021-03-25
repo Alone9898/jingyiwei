@@ -1,20 +1,20 @@
 <template>
     <view>
         <view class="title bb">
-            <text>2021年03月13日</text>
+            <text>{{time}}</text>
             <text class="ml-15">运维日报</text>
         </view>
         <view class="content">
             <view class="align-center flex pageItem space-between">
-                <view class="upPage flex align-center ">
+                <view class="upPage flex align-center " @click="UPday">
                     <van-icon name="arrow-left" />
                     前一天
                 </view>
                 <view>
-                    <text>2021年03月13日</text>
+                    <text>{{time}}</text>
                     <text class="ml-15">运维日报</text>
                 </view>
-                <view class="downPage flex align-center">
+                <view class="downPage flex align-center" @click="downDay">
                     后一天
                     <van-icon name="arrow" />
                 </view>
@@ -30,15 +30,15 @@
                 <van-divider customStyle="margin: 0 0 10px 0;" />
                 <view class="flex align-center item3 space-between mb-10">
                     <view class="circle">
-                        <van-circle value="30" size="64" layer-color="#E6E6E6" color="#A46DFF" text="30%" />
+                        <van-circle value="30" size="64" layer-color="#E6E6E6" color="#A46DFF" text="20%" />
                         <view>电话接听率</view>
                     </view>
                     <view class="circle">
-                        <van-circle value="30" size="64" layer-color="#E6E6E6" color="#DB5654" text="30%" />
+                        <van-circle value="30" size="64" layer-color="#E6E6E6" color="#DB5654" text="10%" />
                         <view>工单完成率</view>
                     </view>
                     <view class="circle">
-                        <van-circle value="30" size="64" layer-color="#E6E6E6" color="#45994E" text="30%" />
+                        <van-circle value="30" size="64" layer-color="#E6E6E6" color="#45994E" text="40%" />
                         <view>服务台解决率</view>
                     </view>
                 </view>
@@ -48,18 +48,18 @@
                     <view class="line">
                     </view>
                     <view class="textTitlw">
-                        通话: 9999次
+                        通话: {{tableList.complete}}次
                     </view>
                 </view>
                 <view class="flex align-center pl-10 pb-10">
                     <view class="mode pr-35">
-                        已接: 9999
+                        已接: {{tableList.accept}}
                     </view>
                     <view class="mode pr-35">
-                        未接: 9999
+                        未接: {{tableList.missed}}
                     </view>
                     <view class="mode">
-                        呼出: 9999
+                        呼出: {{tableList.exhale}}
                     </view>
                 </view>
             </view>
@@ -68,24 +68,24 @@
                     <view class="line">
                     </view>
                     <view class="textTitlw">
-                        已接: 9999次
+                        已接: {{tableList.accept}}次
                     </view>
                 </view>
                 <view class="flex align-center pl-10 pr-10 pb-10 flex-wrap">
                     <view class="mode pr-35">
-                        建单: 9999
+                        建单: {{tableList.create}}
                     </view>
                     <view class="mode pr-35">
-                        关联: 9999
+                        关联: {{tableList.create}}
                     </view>
                     <view class="mode pr-35">
-                        找人: 9999
+                        找人: {{tableList.look}}
                     </view>
                     <view class="mode pr-35 mt-5">
-                        无效: 9999
+                        无效: {{tableList.invalid}}
                     </view>
                     <view class="mode pr-35 mt-5">
-                        未操作: 9999
+                        未操作: {{tableList.none}}
                     </view>
                     <view class="mode pr-35 mt-5">
                         
@@ -97,18 +97,18 @@
                     <view class="line">
                     </view>
                     <view class="textTitlw">
-                        工单: 9999个
+                        工单: 0个
                     </view>
                 </view>
                 <view class="flex align-center pl-10 pr-10 space-between pb-10">
                     <view class="mode">
-                        已完成: 9999
+                        已完成: 0个
                     </view>
                     <view class="mode">
-                        未完成: 9999
+                        未完成: 0个
                     </view>
                     <view class="mode">
-                        服务台解决: 9999
+                        服务台解决: 0个
                     </view>
                 </view>
             </view>
@@ -117,10 +117,56 @@
 </template>
 
 <script>
+    import {
+            axios
+        } from '@/util/index.js'
     export default {
         data() {
-            return {};
+            return {
+                startTimeStamp:0,
+                endTimeStamp:0,
+                time:'',
+                tableList:[],
+            };
         },
+        created() {
+            this.time=this.$tool.dateFormat("YYYY-MM-DD")
+            this.startTimeStamp=new Date(new Date().toLocaleDateString()).getTime()
+            this.endTimeStamp=new Date().getTime()
+        },
+        methods: {
+            UPday(){
+                this.startTimeStamp -= 86400000
+                this.endTimeStamp -= 86400000
+                 this.time=this.$tool.dateFormat("YYYY-MM-DD",this.startTimeStamp)
+                this.list()
+            },
+            downDay(){
+                this.startTimeStamp += 86400000
+                this.endTimeStamp += 86400000
+                this.time=this.$tool.dateFormat("YYYY-MM-DD",this.startTimeStamp)
+                this.list()
+            },
+            list(){
+                let data={
+                    startTimeStamp:this.startTimeStamp,
+                    endTimeStamp:this.endTimeStamp
+                }
+              axios({
+                  url: '/ywt/busOrderTotal/getTotalByTime',
+                  data: {
+                      ...data
+                  },
+                  method: 'post'
+              }).then(res => {
+                  this.tableList=res.body
+              })
+            },  
+        },
+        mounted() {
+            this.list()
+            console.log()
+        }
         
     }
 </script>
