@@ -1,6 +1,6 @@
 <template>
     <view>
-        <view class="title">
+        <view class="title bb">
             <text>2021年03月13日</text>
             <text class="ml-15">运维日报</text>
         </view>

@@ -1,4 +1,4 @@
 export default {
-    BASE_URL: 'http://103.44.238.145:8989',
+    BASE_URL: 'https://jobhorse.cn:8990',
     AUTH_URL: 'xxxx'
 }

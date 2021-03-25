@@ -1,5 +1,7 @@
 // 单独配置url地址，便于以后维护
-const BASE_URL = 'http://103.44.238.145:8989/'
+
+import UrlConfig from '../urlconfig'
+const BASE_URL = UrlConfig.BASE_URL
 // 暴露一个方法，用uni.request发送请求，异步处理的封装最好用promise
 export const axios = (options)=>{
 	// resolve（成功之后的回调函数）和reject（失败之后的回调函数）

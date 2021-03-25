@@ -87,13 +87,14 @@
                  * 实际开发中，使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
                  */
                 axios({
-                    url: "ywt/loginWeChat",
+                    url: "/ywt/loginWeChat",
                     data: {
                         phoneNum: this.account,
                         // code: this.password,
                         // openid: this.openid,
                     }
                 }).then(res => {
+                    console.log(res)
                     if (res.code === 0) {
                         uni.showToast({
                             icon: "none",
