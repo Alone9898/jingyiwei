@@ -21,7 +21,7 @@
 		data() {
 			return {
 				//
-				active: 0,
+				active: 1,
 				tabar: [{
 						id: 0,
 						normal: '/static/tabar/msg_normal.png',

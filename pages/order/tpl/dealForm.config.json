@@ -268,10 +268,10 @@
       {"label": "需求描述", "key": "notion", "value": "", "type": "textarea"},
       {"label": "需求单号", "key": "number", "value": "", "type": "text"},
       {"label": "处理人", "key": "makeUser", "value": "", "type": "pick", "show": "personshow", "option": [
-        {"text": "张三", "value": 0},
-        {"text": "李四", "value": 1},
-        {"text": "王五", "value": 2},
-        {"text": "赵四", "value": 3}
+        {"text": "伍绍宇", "value": 0},
+        {"text": "test", "value": 1},
+        {"text": "测试001", "value": 2},
+        {"text": "测试002", "value": 3}
       ]},
       {"label": "附件", "key": "processEnclosure", "value": "", "type": "file"},
       {"label": "更多信息", "key": "remark", "value": false, "type": "switch"}
