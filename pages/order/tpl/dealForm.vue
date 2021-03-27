@@ -33,7 +33,7 @@
                 <!-- 上传 -->
                 <view v-if="item.type === 'file'" class="file">
                       <van-field
-                        :value="''"
+                        :value="submitForm[item.key]"
                         center
                         readonly
                         label="附件"
@@ -138,7 +138,29 @@
 *  ]}
 */
 
+/**
+// {"label": "设备编号", "key": "depart", "value": "", "type": "text"},
+// {"label": "设备名称", "key": "fault", "value": "", "type": "text"},
+// {"label": "设备分类", "key": "person", "value": "", "type": "pick", "show": "personshow", "option": [
+//   {"text": "张三", "value": 0},
+//   {"text": "李四", "value": 1},
+//   {"text": "王五", "value": 2},
+//   {"text": "赵四", "value": 3}
+// ]},
+// {"label": "设备型号", "key": "fault", "value": "", "type": "text"},
+// {"label": "设备序列号", "key": "fault_num", "value": "", "type": "text"},
+// {"label": "设备重要性", "key": "isness", "value": 1, "type": "radio", "option": [
+//   {"text": "重要", "value": 1},
+//   {"text": "不重要", "value": 0}
+// ]},
+// {"label": "备注", "key": "tooltip", "value": "", "type": "textarea"},
+// {"label": "故障描述", "key": "notion", "value": "", "type": "textarea"}
+ */
+
 <script>
+import {
+        axios
+    } from '@/util/index.js'
 import dealFormConfig from './dealForm.config.json'
     export default {
         props: {
@@ -248,7 +270,21 @@ import dealFormConfig from './dealForm.config.json'
             },
             // 提交
             submit() {
-                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId});
+                // this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId});
+                let param = ''
+                Object.keys(this.submitForm).forEach(cur => {
+                    param+=('&' + cur + '=' + this.submitForm[cur])
+                })
+                axios({
+                    url: '/ywt/busOrderFault/nextOrder?orderNum=' + this.orderId + param,
+                    method: 'post'
+                }).then(res => {
+                    console.log('res',res);
+                    uni.setStorage({
+                        key: 'Edition',
+                        data: res.body,
+                    })
+                })
             }
         },
         created() {

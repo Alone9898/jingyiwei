@@ -56,7 +56,7 @@ import {
         methods: {
             tabClick(event){
                  let templateType = (event.detail.index + 1)
-                 this.init(templateType)
+                 this.init(templateType);
             },
             init(templateType) {
                 let url=''
@@ -133,10 +133,20 @@ import {
             this.test()
             this.init(1)
         },
-        onLoad: function (option) {
+        onLoad: async function (option) {
             this.listType = option.type;
             this.tabsConfig = this.orderType[option.type];
-        }
+            axios({
+                url: '/ywt/outer/getEditionList?dicList=dic,unit,user',
+                method: 'post'
+            }).then(res => {
+                console.log('res',res);
+                uni.setStorage({
+                    key: 'Edition',
+                    data: res.body,
+                })
+            })
+    }
 
     }
 </script>
