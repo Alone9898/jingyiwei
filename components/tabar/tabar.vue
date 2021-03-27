@@ -29,15 +29,15 @@
 						name: '消息',
 						path: '../message/message',
 					},
+					// {
+					// 	id: 1,
+					// 	normal: '/static/tabar/home_normal.png',
+					// 	active: '/static/tabar/home_active.png',
+					// 	name: '首页',
+					// 	path: '../home/home',
+					// },
 					{
 						id: 1,
-						normal: '/static/tabar/home_normal.png',
-						active: '/static/tabar/home_active.png',
-						name: '首页',
-						path: '../home/home',
-					},
-					{
-						id: 2,
 						normal: '/static/tabar/user_normal.png',
 						active: '/static/tabar/user_active.png',
 						name: '我的',
