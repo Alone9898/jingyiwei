@@ -1,0 +1,858 @@
+{
+    "code": 0,
+    "msg": "操作成功",
+    "body": {
+        "edition": {
+            "user": "1.0.0",
+            "unit": "1.0.8",
+            "dic": "1.0.197"
+        },
+        "unit": [
+            {
+                "dept_no": "001",
+                "dept_name": "初始科室",
+                "id": 1
+            },
+            {
+                "dept_no": "003",
+                "dept_name": "测试科室",
+                "id": 4
+            },
+            {
+                "dept_no": "003",
+                "dept_name": "锦江院区",
+                "id": 6
+            },
+            {
+                "dept_no": "004",
+                "dept_name": "华西院区",
+                "id": 7
+            },
+            {
+                "dept_no": "00301",
+                "parent_id": 6,
+                "dept_name": "放射治疗科",
+                "id": 8
+            }
+        ],
+        "user": {
+            "1": "伍绍宇",
+            "2": "test",
+            "3": "测试001",
+            "4": "测试002"
+        },
+        "dic": {
+            "stopReason": [
+                {
+                    "name": "信息填报错误",
+                    "id": 129,
+                    "value": "1"
+                },
+                {
+                    "name": "重复报修",
+                    "id": 130,
+                    "value": "2"
+                },
+                {
+                    "name": "报修人已解决",
+                    "id": 131,
+                    "value": "3"
+                }
+            ],
+            "suspendReason": [
+                {
+                    "name": "需要等待配件",
+                    "id": 96,
+                    "value": "1"
+                },
+                {
+                    "name": "需要第三方工程师",
+                    "id": 97,
+                    "value": "2"
+                },
+                {
+                    "name": "待观察",
+                    "id": 98,
+                    "value": "3"
+                },
+                {
+                    "name": "送外维修",
+                    "id": 99,
+                    "value": "4"
+                },
+                {
+                    "name": "暂时无法维修",
+                    "id": 100,
+                    "value": "5"
+                },
+                {
+                    "name": "完成不了",
+                    "id": 101,
+                    "value": "6"
+                },
+                {
+                    "name": "其他",
+                    "id": 102,
+                    "value": "7"
+                }
+            ],
+            "busOrderInfo": [
+                {
+                    "name": "状态",
+                    "id": 106,
+                    "value": "state"
+                },
+                {
+                    "name": "通话时间",
+                    "id": 107,
+                    "value": "time"
+                },
+                {
+                    "name": "报修科室",
+                    "id": 108,
+                    "value": "deptId"
+                },
+                {
+                    "name": "通话号码",
+                    "id": 109,
+                    "value": "phone"
+                },
+                {
+                    "name": "服务台",
+                    "id": 110,
+                    "value": "reception"
+                },
+                {
+                    "name": "录音",
+                    "id": 111,
+                    "value": "recording"
+                }
+            ],
+            "processTrans": [
+                {
+                    "name": "待接单",
+                    "id": 121,
+                    "value": "create"
+                },
+                {
+                    "name": "未派单",
+                    "id": 122,
+                    "value": "start、back、空值"
+                },
+                {
+                    "name": "已完成",
+                    "id": 123,
+                    "value": "end_termination、close"
+                },
+                {
+                    "name": "流程暂停",
+                    "id": 124,
+                    "value": "suspend"
+                },
+                {
+                    "name": "待评价",
+                    "id": 125,
+                    "value": "end_examine"
+                },
+                {
+                    "name": "待审核",
+                    "id": 126,
+                    "value": "complete"
+                },
+                {
+                    "name": "处理中",
+                    "id": 127,
+                    "value": "其他值"
+                }
+            ],
+            "returnReception": [
+                {
+                    "name": "没时间处理",
+                    "id": 132,
+                    "value": "1"
+                },
+                {
+                    "name": "我不会",
+                    "id": 133,
+                    "value": "2"
+                },
+                {
+                    "name": "不在所属区域",
+                    "id": 134,
+                    "value": "3"
+                }
+            ],
+            "responseType": [
+                {
+                    "name": "即刻维修",
+                    "id": 70,
+                    "value": "1"
+                },
+                {
+                    "name": "预约维修",
+                    "id": 71,
+                    "value": "2"
+                }
+            ],
+            "transReason": [
+                {
+                    "name": "我没时间",
+                    "id": 103,
+                    "value": "1"
+                },
+                {
+                    "name": "我不会",
+                    "id": 104,
+                    "value": "2"
+                },
+                {
+                    "name": "暂时没有时间处理",
+                    "id": 105,
+                    "value": "3"
+                }
+            ],
+            "sendType": [
+                {
+                    "name": "派单",
+                    "id": 76,
+                    "value": "1"
+                },
+                {
+                    "name": "由我处理",
+                    "id": 77,
+                    "value": "2"
+                },
+                {
+                    "name": "电话已解决",
+                    "id": 78,
+                    "value": "3"
+                },
+                {
+                    "name": "电话找人",
+                    "id": 79,
+                    "value": "4"
+                }
+            ],
+            "orderProcess": [
+                {
+                    "name": "初始状态",
+                    "id": 80,
+                    "value": "start"
+                },
+                {
+                    "name": "创建故障信息",
+                    "id": 81,
+                    "value": "create"
+                },
+                {
+                    "name": "电话已解决",
+                    "id": 82,
+                    "value": "end_phone"
+                },
+                {
+                    "name": "电话找人",
+                    "id": 83,
+                    "value": "end_look"
+                },
+                {
+                    "name": "接单",
+                    "id": 84,
+                    "value": "receiving"
+                },
+                {
+                    "name": "协助",
+                    "id": 85,
+                    "value": "assist"
+                },
+                {
+                    "name": "处理未完成",
+                    "id": 86,
+                    "value": "not_complete"
+                },
+                {
+                    "name": "处理完成",
+                    "id": 87,
+                    "value": "complete"
+                },
+                {
+                    "name": "返回服务台",
+                    "id": 88,
+                    "value": "back"
+                },
+                {
+                    "name": "终止",
+                    "id": 89,
+                    "value": "end_termination"
+                },
+                {
+                    "name": "处理暂停",
+                    "id": 90,
+                    "value": "suspend"
+                },
+                {
+                    "name": "处理继续",
+                    "id": 91,
+                    "value": "open_suspend"
+                },
+                {
+                    "name": "转单",
+                    "id": 92,
+                    "value": "forward"
+                },
+                {
+                    "name": "审核通过待评价",
+                    "id": 93,
+                    "value": "end_examine"
+                },
+                {
+                    "name": "审核未通过",
+                    "id": 94,
+                    "value": "no_examine"
+                },
+                {
+                    "name": "关闭",
+                    "id": 95,
+                    "value": "close"
+                }
+            ],
+            "orderExamineTableHeaders": [
+                {
+                    "name": "权重",
+                    "id": 135,
+                    "value": "degree"
+                },
+                {
+                    "name": "报修电话",
+                    "id": 136,
+                    "value": "phone"
+                },
+                {
+                    "name": "报修时间",
+                    "id": 137,
+                    "value": "createTime"
+                },
+                {
+                    "name": "报修科室",
+                    "id": 138,
+                    "value": "deptId"
+                },
+                {
+                    "name": "故障分类",
+                    "id": 139,
+                    "value": "faultType"
+                },
+                {
+                    "name": "故障描述",
+                    "id": 140,
+                    "value": "faultRemark"
+                }
+            ],
+            "talkType": [
+                {
+                    "name": "已接",
+                    "id": 72,
+                    "value": "0"
+                },
+                {
+                    "name": "呼出",
+                    "id": 73,
+                    "value": "1"
+                },
+                {
+                    "name": "未接",
+                    "id": 74,
+                    "value": "2"
+                },
+                {
+                    "name": "回拨",
+                    "id": 75,
+                    "value": "3"
+                }
+            ],
+            "faultClassification": [
+                {
+                    "name": "软件",
+                    "id": 6,
+                    "value": "1"
+                },
+                {
+                    "name": "硬件",
+                    "id": 7,
+                    "value": "2"
+                },
+                {
+                    "name": "非故障",
+                    "id": 8,
+                    "value": "3"
+                },
+                {
+                    "name": "硬件知识",
+                    "id": 9,
+                    "value": "4"
+                },
+                {
+                    "name": "网络",
+                    "id": 10,
+                    "value": "5"
+                },
+                {
+                    "name": "软件知识",
+                    "id": 11,
+                    "value": "6"
+                },
+                {
+                    "name": "工业故障",
+                    "id": 12,
+                    "value": "7"
+                },
+                {
+                    "name": "电子病例系统",
+                    "id": 13,
+                    "value": "8"
+                },
+                {
+                    "name": "消防装备故障",
+                    "id": 14,
+                    "value": "9"
+                },
+                {
+                    "name": "电梯故障",
+                    "id": 15,
+                    "value": "10"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "电脑维护",
+                    "id": 16,
+                    "value": "11"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "打印机维护",
+                    "id": 17,
+                    "value": "12"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "服务器硬件",
+                    "id": 18,
+                    "value": "13"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "交换机故障",
+                    "id": 19,
+                    "value": "14"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "无线AP故障",
+                    "id": 20,
+                    "value": "15"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "虚拟桌面维护",
+                    "id": 21,
+                    "value": "16"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "网络故障",
+                    "id": 22,
+                    "value": "17"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "办公软件维护",
+                    "id": 23,
+                    "value": "18"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "操作系统维护",
+                    "id": 24,
+                    "value": "19"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "视频监控故障",
+                    "id": 25,
+                    "value": "20"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "其他技术服务",
+                    "id": 26,
+                    "value": "21"
+                },
+                {
+                    "parent_id": 7,
+                    "name": "数据库技术",
+                    "id": 27,
+                    "value": "22"
+                },
+                {
+                    "parent_id": 16,
+                    "name": "电脑故障",
+                    "id": 28,
+                    "value": "23"
+                },
+                {
+                    "parent_id": 16,
+                    "name": "CPU维护",
+                    "id": 29,
+                    "value": "24"
+                },
+                {
+                    "parent_id": 16,
+                    "name": "显示屏维护",
+                    "id": 30,
+                    "value": "25"
+                },
+                {
+                    "parent_id": 24,
+                    "name": "质保金合同",
+                    "id": 31,
+                    "value": "26"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "电子病历系统",
+                    "id": 32,
+                    "value": "27"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "门诊收费系统",
+                    "id": 33,
+                    "value": "28"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "病案管理系统",
+                    "id": 34,
+                    "value": "29"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "医生工作站",
+                    "id": 35,
+                    "value": "30"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "护士工作站",
+                    "id": 36,
+                    "value": "31"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "手术麻醉系统",
+                    "id": 37,
+                    "value": "32"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "检验系统",
+                    "id": 38,
+                    "value": "33"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "PACS系统",
+                    "id": 39,
+                    "value": "34"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "其他系统",
+                    "id": 40,
+                    "value": "35"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "体检系统",
+                    "id": 41,
+                    "value": "36"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "药品管理系统",
+                    "id": 42,
+                    "value": "37"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "OA系统",
+                    "id": 43,
+                    "value": "38"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "医保管理系统",
+                    "id": 44,
+                    "value": "39"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "hIS管理",
+                    "id": 45,
+                    "value": "40"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "HIS",
+                    "id": 46,
+                    "value": "41"
+                },
+                {
+                    "parent_id": 6,
+                    "name": "his系统数据错误",
+                    "id": 47,
+                    "value": "42"
+                },
+                {
+                    "parent_id": 46,
+                    "name": "123",
+                    "id": 48,
+                    "value": "43"
+                },
+                {
+                    "parent_id": 48,
+                    "name": "123456",
+                    "id": 49,
+                    "value": "44"
+                },
+                {
+                    "parent_id": 49,
+                    "name": "123456789",
+                    "id": 50,
+                    "value": "45"
+                },
+                {
+                    "parent_id": 9,
+                    "name": "PC",
+                    "id": 51,
+                    "value": "46"
+                },
+                {
+                    "parent_id": 10,
+                    "name": "网线断了",
+                    "id": 52,
+                    "value": "47"
+                },
+                {
+                    "parent_id": 10,
+                    "name": "网络卡顿",
+                    "id": 53,
+                    "value": "48"
+                },
+                {
+                    "parent_id": 12,
+                    "name": "物料异常",
+                    "id": 54,
+                    "value": "49"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "仁济医院体检项目PES",
+                    "id": 55,
+                    "value": "50"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "维保保管理系统",
+                    "id": 56,
+                    "value": "51"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "集成平台建设",
+                    "id": 57,
+                    "value": "52"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "人民医院PC外包",
+                    "id": 58,
+                    "value": "53"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "临床数据中心建设",
+                    "id": 59,
+                    "value": "54"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "十堰人民医院病历系统",
+                    "id": 60,
+                    "value": "55"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "体检中心管理项目上线",
+                    "id": 61,
+                    "value": "56"
+                },
+                {
+                    "parent_id": 13,
+                    "name": "电子病例项目实施上线",
+                    "id": 62,
+                    "value": "57"
+                }
+            ],
+            "faultScope": [
+                {
+                    "name": "个人",
+                    "id": 66,
+                    "value": "1"
+                },
+                {
+                    "name": "科室",
+                    "id": 67,
+                    "value": "2"
+                },
+                {
+                    "name": "多科室",
+                    "id": 68,
+                    "value": "3"
+                },
+                {
+                    "name": "全院",
+                    "id": 69,
+                    "value": "4"
+                }
+            ],
+            "faultSource": [
+                {
+                    "name": "电话报修",
+                    "id": 1,
+                    "value": "1"
+                },
+                {
+                    "name": "上门报修",
+                    "id": 2,
+                    "value": "2"
+                },
+                {
+                    "name": "补录",
+                    "id": 3,
+                    "value": "3"
+                },
+                {
+                    "name": "微信报修",
+                    "id": 4,
+                    "value": "4"
+                },
+                {
+                    "name": "电脑报修",
+                    "id": 5,
+                    "value": "5"
+                }
+            ],
+            "gradeUrgency": [
+                {
+                    "name": "非常紧急",
+                    "id": 63,
+                    "value": "1"
+                },
+                {
+                    "name": "较紧急",
+                    "id": 64,
+                    "value": "2"
+                },
+                {
+                    "name": "常规处理",
+                    "id": 65,
+                    "value": "3"
+                }
+            ],
+            "busOrderComplexInfo": [
+                {
+                    "name": "紧急程度",
+                    "id": 112,
+                    "value": "degree"
+                },
+                {
+                    "name": "状态",
+                    "id": 113,
+                    "value": "processState"
+                },
+                {
+                    "name": "影响范围",
+                    "id": 114,
+                    "value": "rangeType"
+                },
+                {
+                    "name": "报修电话",
+                    "id": 115,
+                    "value": "phone"
+                },
+                {
+                    "name": "报修时间",
+                    "id": 116,
+                    "value": "createTime"
+                },
+                {
+                    "name": "报修科室",
+                    "id": 117,
+                    "value": "deptId"
+                },
+                {
+                    "name": "工单来源",
+                    "id": 118,
+                    "value": "source"
+                },
+                {
+                    "name": "建单人",
+                    "id": 119,
+                    "value": "createUser"
+                },
+                {
+                    "name": "处理人",
+                    "id": 120,
+                    "value": "makeUser"
+                },
+                {
+                    "name": "故障描述",
+                    "id": 128,
+                    "value": "faultRemark"
+                }
+            ],
+            "userMomentState": [
+                {
+                    "name": "休假中",
+                    "id": 141,
+                    "value": "0"
+                },
+                {
+                    "name": "24小时值班",
+                    "id": 142,
+                    "value": "1"
+                },
+                {
+                    "name": "电话班",
+                    "id": 143,
+                    "value": "2"
+                },
+                {
+                    "name": "电话值班",
+                    "id": 144,
+                    "value": "3"
+                },
+                {
+                    "name": "下科室",
+                    "id": 145,
+                    "value": "4"
+                }
+            ]
+        }
+    },
+    "edition": {
+        "user": "1.0.0",
+        "unit": "1.0.8",
+        "dic": "1.0.197"
+    }
+}
