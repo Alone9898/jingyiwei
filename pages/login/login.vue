@@ -38,7 +38,8 @@
                 isActive: 1,
                 providerList: [],
                 hasProvider: false,
-                account: '18222222222',
+                account: '15555555555',
+                // account: '18222222222',
                 checked:false,
                 isDevtools: false,
                 code: '',
@@ -60,13 +61,13 @@
                  * 客户端对账号信息进行一些必要的校验。
                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
                  */
-                if (this.account.length < 11) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '手机号最短为 11 个字符'
-                    });
-                    return;
-                }
+                // if (this.account.length < 11) {
+                //     uni.showToast({
+                //         icon: 'none',
+                //         title: '手机号最短为 11 个字符'
+                //     });
+                //     return;
+                // }
                 // if (this.code.length < 6) {
                 //     uni.showToast({
                 //         icon: 'none',

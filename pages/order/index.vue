@@ -11,7 +11,7 @@
                 placeholder="请输入搜索关键词"
         />
         <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
-            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" info="5">
+            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="tabInfo">
                 <ITEM :listType='listType' :itemList='itemList'></ITEM>
             </van-tab>
         </van-tabs>
@@ -34,20 +34,21 @@ import {
                 orderType: {
                     recOrder: {
                         all: '全部',
-                        recep: '未接单',
-                        proce: '处理中',
-                        comment: '待评价',
-                        pending: '待审核'
+                        recep: '个人待接',
+                        // proce: '小组待接',
+                        // comment: '协助待接'
                     },
                     myOrder: {
                         all: '全部',
                         proce: '处理中',
-                        comment: '待评价',
-                        pending: '待审核'
+                        comment: '差评评价',
+                        pending: '未过审核'
                     },
                     revOrder: {
                         all: '全部',
-                        pending: '待审核'
+                        pending: '待审核',
+                        comment: '通过',
+                        proce: '未通过',
                     }
                 },
             }
@@ -90,7 +91,7 @@ import {
                         obj = {
                             orderId: item.orderNum,
                             orderAlarm: '紧急',
-                            orderRange: '全院',
+                            orderRange: item.firstGroup,
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.rangeType],
                             orderGroup: item.reception,
@@ -98,7 +99,7 @@ import {
                             orderMsgs: [
                                 {
                                     label: '故障分类',
-                                    content: '工业故障'
+                                    content: item.firstGroup
                                 },
                                 {
                                     label: '故障描述',
@@ -119,8 +120,17 @@ import {
                     })
                 })
             },
+            test(){
+                axios({
+                    url: '/ywt/busOrderStatistics/getRedInfo',
+                    method: 'post'
+                }).then(res => {
+                    
+                })
+            }
         },
         mounted() {
+            this.test()
             this.init(1)
         },
         onLoad: function (option) {
