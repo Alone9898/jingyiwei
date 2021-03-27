@@ -174,8 +174,7 @@
             uni.login({
               provider: 'weixin',
               success: function (res) {
-                this.openid=res.code;
-                console.log(this.openid)
+                // this.openid=res.code;
               }
             });
         }
