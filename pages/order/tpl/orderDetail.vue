@@ -108,7 +108,6 @@ import dealFrom from './dealForm'
         methods: {
             // 工单处理按钮
             dealOrder(cur) {
-                console.log(1)
                 if (this.listType === 'myOrder') { // 只有我的工单能弹窗处理
                     this.clickType = cur.type;
                     this.nodeId = new Date().getTime();
