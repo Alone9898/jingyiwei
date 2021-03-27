@@ -90,7 +90,7 @@ import {
                     tableData.forEach(item => {
                         obj = {
                             orderId: item.orderNum,
-                            orderAlarm: '紧急',
+                            orderAlarm: item.faultType===1?'紧急':'较急',
                             orderRange: item.firstGroup,
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.rangeType],
@@ -103,16 +103,16 @@ import {
                                 },
                                 {
                                     label: '故障描述',
-                                    content: item.place
+                                    content: '故障描述一'
                                 },
                                 {
                                     label: '报修地址',
-                                    content: item.place
+                                    content: '成都市112'
                                 },
                                 {
                                     label: '报障人',
-                                    content: item.user,
-                                    phone: item.phone
+                                    content: item.postUserName,
+                                    phone: item.postUserNum
                                 }
                             ]
                         }

@@ -280,17 +280,10 @@ import dealFormConfig from './dealForm.config.json'
                     method: 'post'
                 }).then(res => {
                     console.log('res',res);
-                    if (res.code === 0) {
-                        uni.showToast({
-                            title: '处理成功！请返回列表页面！',
-                            duration: 2000
-                        });
-                    } else {
-                        uni.showToast({
-                            title: '处理失败！请重试！',
-                            duration: 2000
-                        });
-                    }
+                    uni.setStorage({
+                        key: 'Edition',
+                        data: res.body,
+                    })
                 })
             }
         },
