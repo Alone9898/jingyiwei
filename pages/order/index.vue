@@ -111,7 +111,7 @@ import {
                                 },
                                 {
                                     label: '报修地址',
-                                    content: '成都市112'
+                                    content: '成都ccdc'
                                 },
                                 {
                                     label: '报障人',

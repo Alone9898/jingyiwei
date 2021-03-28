@@ -110,7 +110,8 @@
                     "van-image" : "/wxcomponents/vant/image/index",
                     "van-checkbox" : "/wxcomponents/vant/checkbox/index",
                     "van-checkbox-group" : "/wxcomponents/vant/checkbox-group/index"
-                }
+                },
+                 "navigationBarTitleText" : "锦医帷"
             }
         },
         {

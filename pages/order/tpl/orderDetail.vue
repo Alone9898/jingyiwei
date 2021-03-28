@@ -32,9 +32,6 @@
 </template>
 
 <script>
-import {
-        axios
-    } from '@/util/index.js'
 import dealFrom from './dealForm'
     export default {
          components: { dealFrom },
@@ -63,40 +60,33 @@ import dealFrom from './dealForm'
                         {label: '送修', type: 'repair'},
                     ]
                 },
-                orderInfo: {},
                 orderMsg: [
                     {
                         title: '故障信息',
                         msgs: [
-                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
-                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
-                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
-                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
+                            { label: '建单人', value: '张三', type: 'text', source: '' },
                             { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                            { label: '来源', value: '电话报修', type: 'text', source: '' },
+                            { label: '来源', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '所需工时(/小时):', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '故障分类:', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '故障描述:', value: '设备老化', type: 'text', source: '' },
+                            { label: '详细说明:', value: '设备老化,造成设备无法使用', type: 'text', source: '' },
+                            { label: '紧急程度:', value: '非常紧急', type: 'text', source: '' },
+                            { label: '故障类型:', value: '科室', type: 'text', source: '' },
+                            { label: '响应类型:', value: '立刻维修', type: 'text', source: '' },
+                            { label: '要求完成时间:', value: '立刻维修', type: 'text', source: '' },
+                            { label: '故障设备:', value: '立刻维修', type: 'text', source: '' },
                         ]
                     },
                     {
                         title: '接听信息',
                         msgs: [
-                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
-                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
-                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
-                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
-                            { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                            { label: '详细说明', value: '设备老化', type: 'text', source: '' },
-                            { label: '来源', value: '电话报修', type: 'text', source: '' },
-                        ]
-                    },
-                    {
-                        title: '故障信息',
-                        msgs: [
-                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
-                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
-                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
-                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
-                            { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                            { label: '来源', value: '电话报修', type: 'text', source: '' },
+                            { label: '接听人:', value: '张三', type: 'text', source: '' },
+                            { label: '通话时间:', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '报修人:', value: '电话报修', type: 'text', source: '' },
+                            { label: '报修人电话:', value: '电话报修', type: 'text', source: '' },
+                            { label: '报修科室:', value: '电话报修', type: 'text', source: '' },
+                            { label: '报修地址:', value: '电话报修', type: 'text', source: '' },
                         ]
                     },
                 ]
@@ -122,29 +112,14 @@ import dealFrom from './dealForm'
                 if (this.listType === 'myOrder') { // 只有我的工单能弹窗处理
                     this.clickType = cur.type;
                     this.nodeId = new Date().getTime();
-                } else if (this.listType === 'recOrder' && cur.type === 'reback') {
+                } else {
                     // 
-                    this.clickType = cur.type;
-                    this.nodeId = new Date().getTime();
-                } else if (this.listType === 'recOrder' && cur.type === 'accep') {
-                    axios({
-                        url: '/ywt/busOrderFault/nextOrder?orderNum=' + this.orderId,
-                        method: 'post'
-                    }).then(res => {
-                        console.log('----',res);
-                    })
                 }
             }
         },
         onLoad: function (option) {
             this.orderId = option.orderId;
-            let info = this.$api.postDataRequest('GET_ORDER_INFO', {orderNum: this.orderId});
-            this.orderInfo = info;
             this.listType = option.type;
-            if (option.showdeal) {
-                this.clickType = cur.type;
-                this.nodeId = new Date().getTime();
-            }
             this.orderMsgList = [JSON.parse(JSON.stringify(this.orderMsg[0]))];
         },
         mounted() {
