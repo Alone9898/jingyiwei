@@ -11,7 +11,7 @@
                 placeholder="请输入搜索关键词"
         />
         <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
-            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="tabInfo">
+            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="redNum[key]">
                 <ITEM :listType='listType' :itemList='itemList'></ITEM>
             </van-tab>
         </van-tabs>
@@ -29,6 +29,7 @@ import {
             return {
                 queryKeyWord: '',
                 listType: '',
+                typeIndex: 0,
                 tabsConfig: {},
                 itemList: [],
                 orderType: {
@@ -39,13 +40,13 @@ import {
                         // comment: '协助待接'
                     },
                     myOrder: {
-                        all: '全部',
+                        // all: '全部',
                         proce: '处理中',
                         comment: '差评评价',
                         pending: '未过审核'
                     },
                     revOrder: {
-                        all: '全部',
+                        // all: '全部',
                         pending: '待审核',
                         comment: '通过',
                         proce: '未通过',
@@ -55,10 +56,11 @@ import {
         },
         methods: {
             tabClick(event){
-                 let templateType = (event.detail.index + 1)
+                 let templateType = (event.detail.index)
                  this.init(templateType);
             },
             init(templateType) {
+                console.log(templateType);
                 let url=''
                 if(this.listType==='recOrder'){ // 接单中心
                     url='/ywt/busOrderInfo/getWeChatView'
@@ -77,33 +79,35 @@ import {
                      })
                 }
                 axios({
-                    url: url,
+                    url: url + "?templateType= " + templateType + "&likeQuery=" + this.queryKeyWord + "&type=" + this.typeIndex,
                     data: {
                         templateType: templateType,
-                        likeQuery: this.queryKeyWord
+                        likeQuery: this.queryKeyWord,
+                        type: this.typeIndex
                     },
                     method: 'post'
                 }).then(res => {
                     this.itemList = [];
-                    let tableData = res.body
+                    this.redNums = [];
+                    let tableData = res.body.data
                     let obj = {}
                     tableData.forEach(item => {
                         obj = {
                             orderId: item.orderNum,
-                            orderAlarm: item.faultType===1?'紧急':'较急',
-                            orderRange: item.firstGroup,
+                            orderAlarm: item.degree===1?'紧急':'较急',
+                            orderRange: item.rangeType,
                             createTime: item.createTime,
-                            orderStatus: ['处理中','已完成','未接单'][item.rangeType],
-                            orderGroup: item.reception,
-                            orderDepart: item.deptId,
+                            orderStatus: ['处理中','已完成','未接单'][item.processState],
+                            orderGroup: item.firstGroup,
+                            orderDepart: item.firstGroup + '-' + item.lastGroup,
                             orderMsgs: [
                                 {
                                     label: '故障分类',
-                                    content: item.firstGroup
+                                    content: item.faultType
                                 },
                                 {
                                     label: '故障描述',
-                                    content: '故障描述一'
+                                    content: item.faultRemark
                                 },
                                 {
                                     label: '报修地址',
@@ -118,6 +122,9 @@ import {
                         }
                         this.itemList.push(obj)
                     })
+                    Object.keys(res.body.redInfo).forEach(cur => {
+                        this.redNums.push(res.body.redInfo[cur]);
+                    })
                 })
             },
             test(){
@@ -131,10 +138,11 @@ import {
         },
         mounted() {
             this.test()
-            this.init(1)
+            this.init('0')
         },
         onLoad: async function (option) {
             this.listType = option.type;
+            this.typeIndex = option.typeIndex;
             this.tabsConfig = this.orderType[option.type];
             axios({
                 url: '/ywt/outer/getEditionList?dicList=dic,unit,user',

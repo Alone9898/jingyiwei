@@ -41,7 +41,7 @@
                 </view>
                 <view class="content_btn" v-if="item.orderStatus === '未接单' && listType === 'recOrder'">
                     <van-button size="small" round type="info">接 单</van-button>
-                    <van-button size="small" round type="info">退 单</van-button>
+                    <van-button size="small" round type="info" @click="rebackorder(item)">退 单</van-button>
                 </view>
             </view>
         </view>
@@ -101,11 +101,15 @@
             }
         },
         methods: {
+            // 退单
+            rebackorder(item) {
+                this.queryDetail(item, 1);
+            },
             // 查看工单详情
-            queryDetail(item) {
+            queryDetail(item, showdeal = 0) {
                 if (this.listType === 'revOrder') return false; // 审核工单暂时不能查看详情
                 uni.navigateTo({
-                    url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType
+                    url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType + '&showdeal=' + showdeal
                 })
             }
         },

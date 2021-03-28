@@ -119,8 +119,10 @@ import dealFrom from './dealForm'
                 if (this.listType === 'myOrder') { // 只有我的工单能弹窗处理
                     this.clickType = cur.type;
                     this.nodeId = new Date().getTime();
-                } else {
+                } else if (this.listType === 'recOrder' && cur.type === 'reback') {
                     // 
+                    this.clickType = cur.type;
+                    this.nodeId = new Date().getTime();
                 }
             }
         },
@@ -128,8 +130,11 @@ import dealFrom from './dealForm'
             this.orderId = option.orderId;
             let info = this.$api.postDataRequest('GET_ORDER_INFO', {orderNum: this.orderId});
             this.orderInfo = info;
-            
             this.listType = option.type;
+            if (option.showdeal) {
+                this.clickType = cur.type;
+                this.nodeId = new Date().getTime();
+            }
             this.orderMsgList = [JSON.parse(JSON.stringify(this.orderMsg[0]))];
         },
         mounted() {

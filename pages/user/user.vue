@@ -212,7 +212,7 @@
                     })
                 } else {
                     uni.navigateTo({
-                        url: '../order/index?type=' + this.listPageConfig[i]
+                        url: '../order/index?type=' + this.listPageConfig[i] + '&typeIndex=' + (i+1)
                     })
                 }
             },
