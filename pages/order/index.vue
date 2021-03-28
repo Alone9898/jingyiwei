@@ -11,7 +11,7 @@
                 placeholder="请输入搜索关键词"
         />
         <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
-            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="redNum[key]">
+            <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="redNums[key]">
                 <ITEM :listType='listType' :itemList='itemList'></ITEM>
             </van-tab>
         </van-tabs>
@@ -32,6 +32,7 @@ import {
                 typeIndex: 0,
                 tabsConfig: {},
                 itemList: [],
+                redNums: [],
                 orderType: {
                     recOrder: {
                         all: '全部',
@@ -125,6 +126,8 @@ import {
                     Object.keys(res.body.redInfo).forEach(cur => {
                         this.redNums.push(res.body.redInfo[cur]);
                     })
+                    console.log('this.redNums', this.redNums);
+                    this.$forceUpdate();
                 })
             },
             test(){

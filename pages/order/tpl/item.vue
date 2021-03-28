@@ -123,7 +123,7 @@ import {
                 this.queryDetail(item, 1);
             },
             // 查看工单详情
-            queryDetail(item, showdeal = null) {
+            queryDetail(item, showdeal = '') {
                 if (this.listType === 'revOrder') return false; // 审核工单暂时不能查看详情
                 uni.navigateTo({
                     url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType + '&showdeal=' + showdeal
