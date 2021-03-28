@@ -39,7 +39,7 @@
                         </view>
                     </van-cell>
                 </view>
-                <view class="content_btn" v-if="item.orderStatus === '未接单' && listType === 'recOrder'">
+                <view class="content_btn" v-if="listType === 'recOrder'">
                     <van-button size="small" round type="info" @click="acceporder(item)">接 单</van-button>
                     <van-button size="small" round type="info" @click="rebackorder(item)">退 单</van-button>
                 </view>
@@ -110,7 +110,12 @@ import {
                     url: '/ywt/busOrderFault/nextOrder?orderNum=' + item.orderId,
                     method: 'post'
                 }).then(res => {
-                    console.log('----',res);
+                    if (res.code === 0) {
+                        uni.showToast({
+                            title: '接单成功',
+                            duration: 2000
+                        });
+                    }
                 })
             },
             // 退单
@@ -118,7 +123,7 @@ import {
                 this.queryDetail(item, 1);
             },
             // 查看工单详情
-            queryDetail(item, showdeal = 0) {
+            queryDetail(item, showdeal = null) {
                 if (this.listType === 'revOrder') return false; // 审核工单暂时不能查看详情
                 uni.navigateTo({
                     url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType + '&showdeal=' + showdeal

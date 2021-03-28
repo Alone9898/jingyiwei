@@ -292,14 +292,14 @@
     "submit": {
       "label": "退单",
       "url": "xxxxx"
-    }
-  },
-  "form": [
-    {"label": "processValue", "key": "makeUser", "value": "", "type": "radio", "option": [
-      {"text": "不会处理", "value": 0},
-      {"text": "没有时间", "value": 1},
-      {"text": "错派工单", "value": 2}
-    ]},
-    {"label": "详细说明", "key": "remark", "value": "", "type": "textarea"}
-  ]
+    },
+    "form": [
+      {"label": "退单原因", "key": "processValue", "value": "", "type": "radio", "option": [
+        {"text": "不会处理", "value": 0},
+        {"text": "没有时间", "value": 1},
+        {"text": "错派工单", "value": 2}
+      ]},
+      {"label": "详细说明", "key": "remark", "value": "", "type": "textarea"}
+    ]
+  }
 }
