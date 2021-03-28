@@ -32,6 +32,9 @@
 </template>
 
 <script>
+import {
+        axios
+    } from '@/util/index.js'
 import dealFrom from './dealForm'
     export default {
          components: { dealFrom },
@@ -123,6 +126,13 @@ import dealFrom from './dealForm'
                     // 
                     this.clickType = cur.type;
                     this.nodeId = new Date().getTime();
+                } else if (this.listType === 'recOrder' && cur.type === 'accep') {
+                    axios({
+                        url: '/ywt/busOrderFault/nextOrder?orderNum=' + this.orderId,
+                        method: 'post'
+                    }).then(res => {
+                        console.log('----',res);
+                    })
                 }
             }
         },

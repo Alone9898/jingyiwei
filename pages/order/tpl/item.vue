@@ -40,7 +40,7 @@
                     </van-cell>
                 </view>
                 <view class="content_btn" v-if="item.orderStatus === '未接单' && listType === 'recOrder'">
-                    <van-button size="small" round type="info">接 单</van-button>
+                    <van-button size="small" round type="info" @click="acceporder(item)">接 单</van-button>
                     <van-button size="small" round type="info" @click="rebackorder(item)">退 单</van-button>
                 </view>
             </view>
@@ -49,6 +49,9 @@
 </template>
 
 <script>
+import {
+        axios
+    } from '@/util/index.js'
     export default {
         props: {
             listType: {
@@ -101,6 +104,15 @@
             }
         },
         methods: {
+            acceporder(item) {
+                // let res = await this.$api.postDataRequest('DEAL_ORDER_NEXT',{},{orderNum: item.orderId});
+                axios({
+                    url: '/ywt/busOrderFault/nextOrder?orderNum=' + item.orderId,
+                    method: 'post'
+                }).then(res => {
+                    console.log('----',res);
+                })
+            },
             // 退单
             rebackorder(item) {
                 this.queryDetail(item, 1);

@@ -280,10 +280,6 @@ import dealFormConfig from './dealForm.config.json'
                     method: 'post'
                 }).then(res => {
                     console.log('res',res);
-                    uni.setStorage({
-                        key: 'Edition',
-                        data: res.body,
-                    })
                 })
             }
         },

@@ -89,13 +89,21 @@ let Ajax = async (request) => {
     let url = getUrl(request.url, request.urlParam, request.base || 'base'),
         requestData = buildRequestData(request);
     requestData.url = url + '?_date=' + new Date().getTime();
+
+    if (requestData.method === 'post' || !!request.params) {
+        for (let key in request.params) {
+            if (request.params.hasOwnProperty(key)) {
+                requestData.url += `&${key}=${encodeURI(request.params[key])}`;
+            }
+        }
+    }
     let _res = {}
     let res = await uni.request(requestData).then(e => {
         _res = e[1] ? e[1].data : e;
     });
     uni.hideLoading();
     if (!!_res) {
-        return _res.data;
+        return _res;
         // if (_res.code === 200) {
         //     return _res.data;
         // } else {
@@ -157,11 +165,12 @@ let getDataRequest = (key, params, base) => {
  * @param      data                请求参数
  * @return     {Promise<*>}        返回promise对象
  */
- let postDataRequest = (key, data, base) => {
+ let postDataRequest = (key, data, params, base) => {
     return Ajax({
         method: 'POST',
         url: urlList[key],
         data,
+        params,
         base
     });
 };
