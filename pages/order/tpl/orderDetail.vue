@@ -3,9 +3,9 @@
 * @Mar 20, 2021
 */
 <template>
-    <div class='orderDetail_body'>
+    <div class='orderDetail_body' v-if="showInfo">
         <view class="order_id">工单号：{{ orderId }}</view>
-        <view class="msg_card" v-for="(item, index) in orderMsgList" :key="index">
+        <view class="msg_card"  v-for="(item, index) in orderMsgList" :key="index">
             <van-transition :show="(ismore && index !== 0) || (index === 0)" name="fade-up">
                 <view class="title">
                     <view>{{ item.title }}</view>
@@ -45,6 +45,7 @@ import dealFrom from './dealForm'
                 orderId: '',
                 clickType:  '',
                 listType: '',
+                showInfo:false,
                 orderMsgList: [],
                 btnConfig: {
                     recOrder: [
@@ -65,34 +66,28 @@ import dealFrom from './dealForm'
                 },
                 orderInfo: {},
                 orderMsg: [
-                  {
-                      title: '故障信息',
-                      msgs: [
-                          { label: '建单人', value: '张三', type: 'text', source: '' },
-                          { label: '建单时间', value: '', type: 'text', source: '' },
-                          { label: '来源', value: '', type: 'text', source: '' },
-                          { label: '所需工时(/小时):', value: '', type: 'text', source: '' },
-                          { label: '故障分类:', value: ' 18:00', type: 'text', source: '' },
-                          { label: '故障描述:', value: '设备老化', type: 'text', source: '' },
-                          { label: '详细说明:', value: '设备老化,造成设备无法使用', type: 'text', source: '' },
-                          { label: '紧急程度:', value: '非常紧急', type: 'text', source: '' },
-                          { label: '故障类型:', value: '科室', type: 'text', source: '' },
-                          { label: '响应类型:', value: '立刻维修', type: 'text', source: '' },
-                          { label: '要求完成时间:', value: '立刻维修', type: 'text', source: '' },
-                          { label: '故障设备:', value: '立刻维修', type: 'text', source: '' },
-                      ]
-                  },
-                  {
-                      title: '接听信息',
-                      msgs: [
-                          { label: '接听人:', value: '张三', type: 'text', source: '' },
-                          { label: '通话时间:', value: '', type: 'text', source: '' },
-                          { label: '报修人:', value: '电话报修', type: 'text', source: '' },
-                          { label: '报修人电话:', value: '电话报修', type: 'text', source: '' },
-                          { label: '报修科室:', value: '电话报修', type: 'text', source: '' },
-                          { label: '报修地址:', value: '电话报修', type: 'text', source: '' },
-                      ]
-                  },
+                    {
+                        title: '故障信息',
+                        msgs: [
+                            { label: '建单人', value: '张三', type: 'text', source: '', col: 'col2' },
+                            { label: '建单时间', value: '2021-3-5', type: 'text', source: '', col: 'col2' },
+                            { label: '来源', value: '电话报障', type: 'text', source: '', col: 'col2' },
+                            { label: '所需工时', value: '5445', type: 'text', source: '', col: 'col2' },
+                            { label: '建单人', value: '张三', type: 'text', source: '' },
+                            { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '来源', value: '电话报修', type: 'text', source: '' },
+                            { label: '来源', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '所需工时(/小时):', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '故障分类:', value: '2021-3-5 18:00', type: 'text', source: '' },
+                            { label: '故障描述:', value: '设备老化', type: 'text', source: '' },
+                            { label: '详细说明:', value: '设备老化,造成设备无法使用', type: 'text', source: '' },
+                            { label: '紧急程度:', value: '非常紧急', type: 'text', source: '' },
+                            { label: '故障类型:', value: '科室', type: 'text', source: '' },
+                            { label: '响应类型:', value: '立刻维修', type: 'text', source: '' },
+                            { label: '要求完成时间:', value: '立刻维修', type: 'text', source: '' },
+                            { label: '故障设备:', value: '立刻维修', type: 'text', source: '' },
+                        ]
+                    },
                 ]
             }
         },
@@ -133,12 +128,53 @@ import dealFrom from './dealForm'
                         }
                     })
                 }
+            },
+            async info(){
+               let info =await this.$api.postDataRequest('GET_ORDER_INFO', {orderNum: this.orderId});
+              this.orderInfo=info.body
+              let fault=this.orderInfo.fault
+              let infoOrder=this.orderInfo.info
+              let orderMsg=[
+                  {
+                      title: '故障信息',
+                      msgs: [
+                          { label: '建单人', value: fault.createUser, type: 'text', source: '' },
+                          { label: '建单时间', value: fault.createTime, type: 'text', source: '' },
+                          { label: '来源', value: fault.source, type: 'text', source: '' },
+                          { label: '所需工时(/小时):', value: fault.needTime, type: 'text', source: '' },
+                          { label: '故障分类:', value: fault.responseType, type: 'text', source: '' },
+                          { label: '故障描述:', value: fault.faultRemark, type: 'text', source: '' },
+                          { label: '详细说明:', value: fault.detailInfo, type: 'text', source: '' },
+                          { label: '紧急程度:', value: fault.degree, type: 'text', source: '' },
+                          { label: '故障类型:', value: fault.rangeType, type: 'text', source: '' },
+                          { label: '响应类型:', value: fault.responseType, type: 'text', source: '' },
+                          { label: '要求完成时间:', value: fault.reqTime, type: 'text', source: '' },
+                          { label: '故障设备:', value: fault.equipment, type: 'text', source: '' },
+                      ]
+                  },
+                  {
+                      title: '接听信息',
+                      msgs: [
+                          { label: '接听人:', value: infoOrder.reception, type: 'text', source: '' },
+                          { label: '通话时间:', value: infoOrder.time, type: 'text', source: '' },
+                          { label: '报修人:', value: infoOrder.user, type: 'text', source: '' },
+                          { label: '报修人电话:', value: infoOrder.phone, type: 'text', source: '' },
+                          { label: '报修科室:', value: infoOrder.deptId, type: 'text', source: '' },
+                          { label: '报修地址:', value: infoOrder.place, type: 'text', source: '' },
+                      ]
+                  },
+                ]
+                this.$nextTick(res=>{
+                    this.$set(this,'orderMsg',[...orderMsg])
+                      this.orderMsgList = [JSON.parse(JSON.stringify(this.orderMsg[0]))];
+                    this.showInfo=true
+                      this.$forceUpdate();
+                })
             }
         },
         onLoad: function (option) {
             this.orderId = option.orderId;
-            let info = this.$api.postDataRequest('GET_ORDER_INFO', {orderNum: this.orderId});
-            this.orderInfo = info;
+            this.info()
             this.listType = option.type;
             if (option.showdeal) {
                setTimeout(() => {
@@ -146,7 +182,6 @@ import dealFrom from './dealForm'
                 this.nodeId = new Date().getTime();
                }, 500)
             }
-            this.orderMsgList = [JSON.parse(JSON.stringify(this.orderMsg[0]))];
         },
         mounted() {
             

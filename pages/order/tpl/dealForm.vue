@@ -156,6 +156,12 @@
 // {"label": "备注", "key": "tooltip", "value": "", "type": "textarea"},
 // {"label": "故障描述", "key": "notion", "value": "", "type": "textarea"}
  */
+   // {
+            //     "label": "故障原因",
+            //     "key": "key",
+            //     "value": "",
+            //     "type": "text"
+            // },
 
 <script>
 import {
@@ -200,7 +206,6 @@ import dealFormConfig from './dealForm.config.json'
                 this.fromConfig.form.forEach(cur => {
                     this.submitForm[cur.key] = ''
                 })
-                console.log('submitForm', this.submitForm);
                 return this.nodeId;
             }
         },
@@ -273,7 +278,7 @@ import dealFormConfig from './dealForm.config.json'
             },
             // 提交
             submit() {
-                // this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId});
+                this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId});
                 let param = ''
                 Object.keys(this.submitForm).forEach(cur => {
                     param+=('&' + cur + '=' + this.submitForm[cur])
@@ -282,7 +287,20 @@ import dealFormConfig from './dealForm.config.json'
                     url: this.baseUrl+'?orderNum=' + this.orderId + param,
                     method: 'post'
                 }).then(res => {
-                    console.log('res',res);
+                    if(res.code===0){
+                        uni.showToast({
+                            title: '操作成功',
+                            duration: 2000
+                        });
+                        this.onClose()
+                    }else{
+                        uni.showToast({
+                            title: res.msg,
+                             icon: 'none',
+                            duration: 2000
+                        });
+                    }
+                  
                 })
             }
         },

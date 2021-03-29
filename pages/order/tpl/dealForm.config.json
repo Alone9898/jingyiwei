@@ -70,12 +70,6 @@
                 ]
             },
             {
-                "label": "故障原因",
-                "key": "reason",
-                "value": "",
-                "type": "text"
-            },
-            {
                 "label": "解决方式",
                 "key": "makeWay",
                 "value": "",
@@ -533,7 +527,7 @@
         "title": "退单",
         "submit": {
             "label": "退单",
-            "url": "xxxxx"
+            "url": "/ywt/wechat/order/reback"
         },
         "form": [{
                 "label": "退单原因",

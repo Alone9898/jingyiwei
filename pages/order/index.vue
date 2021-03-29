@@ -141,7 +141,6 @@ import {
                 url: '/ywt/outer/getEditionList?dicList=dic,unit,user',
                 method: 'post'
             }).then(res => {
-                console.log('res',res);
                 uni.setStorage({
                     key: 'Edition',
                     data: res.body,
