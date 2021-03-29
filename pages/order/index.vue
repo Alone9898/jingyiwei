@@ -14,7 +14,7 @@
             <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="redNums[key]">
             </van-tab>
         </van-tabs>
-        <ITEM :listType='listType' :itemList='itemList'></ITEM>
+        <ITEM :listType='listType' :itemList='itemList' @getTablist='getTablist'></ITEM>
     </div>
 </template>
 
@@ -31,6 +31,7 @@ import {
                 listType: '',
                 typeIndex: 0,
                 tabsConfig: {},
+                curTab: 0,
                 itemList: [],
                 redNums: [],
                 orderType: {
@@ -56,8 +57,12 @@ import {
             }
         },
         methods: {
+            getTablist() {
+                this.init(this.curTab);
+            },
             tabClick(event){
                  let templateType = (event.detail.index)
+                 this.curTab = templateType
                  this.init(templateType);
             },
             init(templateType) {

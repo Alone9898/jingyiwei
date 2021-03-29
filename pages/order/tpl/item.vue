@@ -116,6 +116,7 @@ import {
                             title: '接单成功',
                             duration: 2000
                         });
+                        this.$emit('getTablist')
                     }
                 })
             },
