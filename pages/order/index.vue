@@ -12,9 +12,9 @@
         />
         <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
             <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="redNums[key]">
-                <ITEM :listType='listType' :itemList='itemList'></ITEM>
             </van-tab>
         </van-tabs>
+        <ITEM :listType='listType' :itemList='itemList'></ITEM>
     </div>
 </template>
 
