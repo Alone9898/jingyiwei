@@ -109,7 +109,7 @@ import {
                         obj = {
                             orderId: item.orderNum,
                             orderAlarm: orderAlarm,
-                            orderRange: item.rangeType,
+                            orderRange: uni.getStorageSync('Edition').unit.filter(cur => cur.id == item.postDept)[0].dept_name,
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.processState],
                             orderGroup: item.firstGroup,
@@ -117,7 +117,7 @@ import {
                             orderMsgs: [
                                 {
                                     label: '故障分类',
-                                    content: item.faultType
+                                    content: uni.getStorageSync('Edition').dic.faultClassification.filter(cur => cur.value == item.faultType)[0].name
                                 },
                                 {
                                     label: '故障描述',
@@ -129,8 +129,8 @@ import {
                                 },
                                 {
                                     label: '报障人',
-                                    content: item.postUserName,
-                                    phone: item.postUserNum
+                                    content: item.makeUserName,
+                                    phone: item.makeUserNum
                                 }
                             ]
                         }
@@ -150,15 +150,6 @@ import {
             this.listType = option.type;
             this.typeIndex = option.typeIndex;
             this.tabsConfig = this.orderType[option.type];
-            axios({
-                url: '/ywt/outer/getEditionList?dicList=dic,unit,user',
-                method: 'post'
-            }).then(res => {
-                uni.setStorage({
-                    key: 'Edition',
-                    data: res.body,
-                })
-            })
     }
 
     }

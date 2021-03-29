@@ -114,6 +114,15 @@
             PieChart
         },
         onReady() {
+            axios({
+                url: '/ywt/outer/getEditionList?dicList=dic,unit,user',
+                method: 'post'
+            }).then(res => {
+                uni.setStorage({
+                    key: 'Edition',
+                    data: res.body,
+                })
+            })
             var context = uni.createCanvasContext('firstCanvas')
             context.setStrokeStyle("#ff0000")
             context.setLineWidth(2)
