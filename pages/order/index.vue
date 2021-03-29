@@ -93,9 +93,17 @@ import {
                     let tableData = res.body.data
                     let obj = {}
                     tableData.forEach(item => {
+                        let orderAlarm
+                        if(item.degree===1){
+                            orderAlarm='紧急'
+                        }else if(item.degree===2){
+                             orderAlarm='紧急'
+                        }else{
+                            orderAlarm='常规'
+                        }
                         obj = {
                             orderId: item.orderNum,
-                            orderAlarm: item.degree===1?'紧急':'较急',
+                            orderAlarm: orderAlarm,
                             orderRange: item.rangeType,
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.processState],
