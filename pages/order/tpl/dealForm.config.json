@@ -1,305 +1,565 @@
 {
-  "carry": {
-    "title": "完成",
-    "submit": {
-      "label": "完成",
-      "url": "aasf"
-    },
-    "form": [
-      {"label": "费用（元）", "key": "cost", "value": "", "type": "text"},
-      {"label": "故障分类", "key": "faultClassification", "value": "", "type": "pick", "show": "faultClassificationshow", "option": [
-        {
-          "text": "软件",
-          "id": 6,
-          "value": "1"
-      },
-      {
-          "text": "硬件",
-          "id": 7,
-          "value": "2"
-      },
-      {
-          "text": "非故障",
-          "id": 8,
-          "value": "3"
-      },
-      {
-          "text": "硬件知识",
-          "id": 9,
-          "value": "4"
-      },
-      {
-          "text": "网络",
-          "id": 10,
-          "value": "5"
-      },
-      {
-          "text": "软件知识",
-          "id": 11,
-          "value": "6"
-      },
-      {
-          "text": "工业故障",
-          "id": 12,
-          "value": "7"
-      },
-      {
-          "text": "电子病例系统",
-          "id": 13,
-          "value": "8"
-      },
-      {
-          "text": "消防装备故障",
-          "id": 14,
-          "value": "9"
-      },
-      {
-          "text": "电梯故障",
-          "id": 15,
-          "value": "10"
-      }
-      ]},
-      {"label": "故障原因", "key": "processValue", "value": "", "type": "text"},
-      {"label": "解决方式", "key": "makeType", "value": "", "type": "pick", "show": "makeTypeShow", "option": [
-        {"text": "协助", "value": 0},
-        {"text": "暂停", "value": 1},
-        {"text": "完成", "value": 2},
-        {"text": "未完成", "value": 3},
-        {"text": "转交服务台", "value": 3},
-        {"text": "终止", "value": 3},
-        {"text": "转发", "value": 3}
-      ]},
-      {"label": "处理过程", "key": "makeProcess", "value": "", "type": "textarea"},
-      {"label": "事件原因", "key": "reason", "value": "", "type": "textarea"},
-      {"label": "附件", "key": "processEnclosure", "value": "", "type": "file"},
-      {"label": "存入知识库", "key": "makeQuote", "value": false, "type": "switch"}
-    ]
-  
-  },
-  "suspend": {
-    "title": "暂停处理",
-    "submit": {
-      "label": "确定",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "暂停原因", "key": "processValue", "value": "", "type": "pick", "show": "processValueshow", "option": [
-        {
-          "text": "需要等待配件",
-          "id": 96,
-          "value": "1"
-      },
-      {
-          "text": "需要第三方工程师",
-          "id": 97,
-          "value": "2"
-      },
-      {
-          "text": "待观察",
-          "id": 98,
-          "value": "3"
-      },
-      {
-          "text": "送外维修",
-          "id": 99,
-          "value": "4"
-      },
-      {
-          "text": "暂时无法维修",
-          "id": 100,
-          "value": "5"
-      },
-      {
-          "text": "完成不了",
-          "id": 101,
-          "value": "6"
-      },
-      {
-          "text": "其他",
-          "id": 102,
-          "value": "7"
-      }
-      ]},
-      {"label": "暂停说明", "key": "remark", "value": "", "type": "textarea"}
-    ]
-  },
-  "deal": {
-    "title": "处理",
-    "submit": {
-      "label": "确定",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "处理过程", "key": "makeProcess", "value": "", "type": "text"},
-      {"label": "附件", "key": "processEnclosure", "value": "", "type": "file"}
-    ]
-  },
-  "deliver": {
-    "title": "转交",
-    "submit": {
-      "label": "转交",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "转交原因", "key": "processValue", "value": "", "type": "pick", "show": "procevalueshow", "option": [
-        {
-          "text": "我没时间",
-          "id": 103,
-          "value": "1"
-      },
-      {
-          "text": "我不会",
-          "id": 104,
-          "value": "2"
-      },
-      {
-          "text": "暂时没有时间处理",
-          "id": 105,
-          "value": "3"
-      }
-      ]},
-      {"label": "转交工程师", "key": "makeUser", "value": "", "type": "pick", "show": "makeUsershow", "option": [
-        {"text": "伍绍宇", "value": 0},
-        {"text": "test", "value": 1},
-        {"text": "测试001", "value": 2},
-        {"text": "测试002", "value": 3}
-      ]},
-      {"label": "转交说明", "key": "remark", "value": "", "type": "textarea"}
-    ]
-  },
-  "assist": {
-    "title": "多人协助",
-    "submit": {
-      "label": "多人协助",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "协助人员", "key": "makeUser", "value": "", "type": "pick", "show": "makeUsershow", "option": [
-        {"text": "伍绍宇", "value": 0},
-        {"text": "test", "value": 1},
-        {"text": "测试001", "value": 2},
-        {"text": "测试002", "value": 3}
-      ]},
-      {"label": "协助说明", "key": "remark", "value": "", "type": "textarea"}
-    ]
-  },
-  "terminal": {
-    "title": "终止工单",
-    "submit": {
-      "label": "终止工单",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "终止原因", "key": "processValue", "value": "", "type": "pick", "show": "stopreasonshow", "option": [
-        {
-          "text": "信息填报错误",
-          "id": 129,
-          "value": "1"
-      },
-      {
-          "text": "重复报修",
-          "id": 130,
-          "value": "2"
-      },
-      {
-          "text": "报修人已解决",
-          "id": 131,
-          "value": "3"
-      }
-      ]},
-      {"label": "终止说明", "key": "remark", "value": "", "type": "textarea"},
-      {"label": "终止时间", "key": "timer", "value": "", "show": "timepickshow", "type": "time"},
-      {"label": "终止人", "key": "makeUser", "value": "", "type": "pick", "show": "makeUsershow", "option": [
-        {"text": "伍绍宇", "value": 0},
-        {"text": "test", "value": 1},
-        {"text": "测试001", "value": 2},
-        {"text": "测试002", "value": 3}
-      ]}
-    ]
-  },   
-	"return": {
-		"title": "退回",
-    "submit": {
-      "label": "退回",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "报修科室", "key": "depart", "value": "", "type": "pick", "show": "departshow", "option": [
-        {
-          "value": "001",
-          "text": "初始科室",
-          "id": 1
-      },
-      {
-          "value": "003",
-          "text": "测试科室",
-          "id": 4
-      },
-      {
-          "value": "003",
-          "text": "锦江院区",
-          "id": 6
-      },
-      {
-          "value": "004",
-          "text": "华西院区",
-          "id": 7
-      },
-      {
-          "value": "00301",
-          "parent_id": 6,
-          "text": "放射治疗科",
-          "id": 8
-      }
-      ]},
-      {"label": "故障问题", "key": "nowEquipment", "value": "", "type": "text"},
-      {"label": "退回原因", "key": "processValue", "value": "", "type": "text"},
-      {"label": "详细说明", "key": "remark", "value": "", "type": "textarea"}
-    ]
-  },
-	"upgrade": {
-		"title": "工单升级",
-    "submit": {
-      "label": "工单升级",
-      "url": "ddth"
-    },
-    "form": [
-      {"label": "需求标题", "key": "title", "value": "", "type": "text"},
-      {"label": "需求描述", "key": "notion", "value": "", "type": "textarea"},
-      {"label": "需求单号", "key": "number", "value": "", "type": "text"},
-      {"label": "处理人", "key": "makeUser", "value": "", "type": "pick", "show": "personshow", "option": [
-        {"text": "伍绍宇", "value": 0},
-        {"text": "test", "value": 1},
-        {"text": "测试001", "value": 2},
-        {"text": "测试002", "value": 3}
-      ]},
-      {"label": "附件", "key": "processEnclosure", "value": "", "type": "file"},
-      {"label": "更多信息", "key": "remark", "value": false, "type": "switch"}
-    ]
-  },
-	"repair": {
-		"title": "送修",
-    "submit": {
-      "label": "送修",
-      "url": "ddth"
-    },
-    "form": [
+    "carry": {
+        "title": "完成",
+        "submit": {
+            "label": "完成",
+            "url": "/ywt/wechat/order/complete"
+        },
+        "form": [{
+                "label": "费用（元）",
+                "key": "cost",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "故障分类",
+                "key": "nowEquipment",
+                "value": "",
+                "type": "pick",
+                "show": "faultClassificationshow",
+                "option": [{
+                        "text": "软件",
+                        "id": 6,
+                        "value": "1"
+                    },
+                    {
+                        "text": "硬件",
+                        "id": 7,
+                        "value": "2"
+                    },
+                    {
+                        "text": "非故障",
+                        "id": 8,
+                        "value": "3"
+                    },
+                    {
+                        "text": "硬件知识",
+                        "id": 9,
+                        "value": "4"
+                    },
+                    {
+                        "text": "网络",
+                        "id": 10,
+                        "value": "5"
+                    },
+                    {
+                        "text": "软件知识",
+                        "id": 11,
+                        "value": "6"
+                    },
+                    {
+                        "text": "工业故障",
+                        "id": 12,
+                        "value": "7"
+                    },
+                    {
+                        "text": "电子病例系统",
+                        "id": 13,
+                        "value": "8"
+                    },
+                    {
+                        "text": "消防装备故障",
+                        "id": 14,
+                        "value": "9"
+                    },
+                    {
+                        "text": "电梯故障",
+                        "id": 15,
+                        "value": "10"
+                    }
+                ]
+            },
+            {
+                "label": "故障原因",
+                "key": "reason",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "解决方式",
+                "key": "makeWay",
+                "value": "",
+                "type": "pick",
+                "show": "makeTypeShow",
+                "option": [{
+                        "text": "协助",
+                        "value": 0
+                    },
+                    {
+                        "text": "暂停",
+                        "value": 1
+                    },
+                    {
+                        "text": "完成",
+                        "value": 2
+                    },
+                    {
+                        "text": "未完成",
+                        "value": 3
+                    },
+                    {
+                        "text": "转交服务台",
+                        "value": 3
+                    },
+                    {
+                        "text": "终止",
+                        "value": 3
+                    },
+                    {
+                        "text": "转发",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "label": "处理过程",
+                "key": "makeProcess",
+                "value": "",
+                "type": "textarea"
+            },
+            {
+                "label": "事件原因",
+                "key": "reason",
+                "value": "",
+                "type": "textarea"
+            },
+            {
+                "label": "附件",
+                "key": "processEnclosure",
+                "value": "",
+                "type": "file"
+            },
+            {
+                "label": "存入知识库",
+                "key": "makeQuote",
+                "value": false,
+                "type": "switch"
+            }
+        ]
 
-    ]
-  },
-  "reback": {
-    "title": "退单",
-    "submit": {
-      "label": "退单",
-      "url": "xxxxx"
     },
-    "form": [
-      {"label": "退单原因", "key": "processValue", "value": "", "type": "radio", "option": [
-        {"text": "不会处理", "value": 0},
-        {"text": "没有时间", "value": 1},
-        {"text": "错派工单", "value": 2}
-      ]},
-      {"label": "详细说明", "key": "remark", "value": "", "type": "textarea"}
-    ]
-  }
+    "suspend": {
+        "title": "暂停处理",
+        "submit": {
+            "label": "确定",
+            "url": "/ywt/wechat/order/suspend"
+        },
+        "form": [{
+                "label": "暂停原因",
+                "key": "processValue",
+                "value": "",
+                "type": "pick",
+                "show": "processValueshow",
+                "option": [{
+                        "text": "需要等待配件",
+                        "id": 96,
+                        "value": "1"
+                    },
+                    {
+                        "text": "需要第三方工程师",
+                        "id": 97,
+                        "value": "2"
+                    },
+                    {
+                        "text": "待观察",
+                        "id": 98,
+                        "value": "3"
+                    },
+                    {
+                        "text": "送外维修",
+                        "id": 99,
+                        "value": "4"
+                    },
+                    {
+                        "text": "暂时无法维修",
+                        "id": 100,
+                        "value": "5"
+                    },
+                    {
+                        "text": "完成不了",
+                        "id": 101,
+                        "value": "6"
+                    },
+                    {
+                        "text": "其他",
+                        "id": 102,
+                        "value": "7"
+                    }
+                ]
+            },
+            {
+                "label": "暂停说明",
+                "key": "remark",
+                "value": "",
+                "type": "textarea"
+            }
+        ]
+    },
+    "deal": {
+        "title": "处理",
+        "submit": {
+            "label": "确定",
+            "url": "/ywt/wechat/order/makeing"
+        },
+        "form": [{
+                "label": "处理过程",
+                "key": "makeProcess",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "附件",
+                "key": "processEnclosure",
+                "value": "",
+                "type": "file"
+            }
+        ]
+    },
+    "deliver": {
+        "title": "转交",
+        "submit": {
+            "label": "转交",
+            "url": "/ywt/wechat/order/redirect"
+        },
+        "form": [{
+                "label": "转交原因",
+                "key": "processValue",
+                "value": "",
+                "type": "pick",
+                "show": "procevalueshow",
+                "option": [{
+                        "text": "我没时间",
+                        "id": 103,
+                        "value": "1"
+                    },
+                    {
+                        "text": "我不会",
+                        "id": 104,
+                        "value": "2"
+                    },
+                    {
+                        "text": "暂时没有时间处理",
+                        "id": 105,
+                        "value": "3"
+                    }
+                ]
+            },
+            {
+                "label": "转交工程师",
+                "key": "makeUser",
+                "value": "",
+                "type": "pick",
+                "show": "makeUsershow",
+                "option": [{
+                        "text": "伍绍宇",
+                        "value": 0
+                    },
+                    {
+                        "text": "test",
+                        "value": 1
+                    },
+                    {
+                        "text": "测试001",
+                        "value": 2
+                    },
+                    {
+                        "text": "测试002",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "label": "转交说明",
+                "key": "remark",
+                "value": "",
+                "type": "textarea"
+            }
+        ]
+    },
+    "assist": {
+        "title": "多人协助",
+        "submit": {
+            "label": "多人协助",
+            "url": "ddth"
+        },
+        "form": [{
+                "label": "协助人员",
+                "key": "makeUser",
+                "value": "",
+                "type": "pick",
+                "show": "makeUsershow",
+                "option": [{
+                        "text": "伍绍宇",
+                        "value": 0
+                    },
+                    {
+                        "text": "test",
+                        "value": 1
+                    },
+                    {
+                        "text": "测试001",
+                        "value": 2
+                    },
+                    {
+                        "text": "测试002",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "label": "协助说明",
+                "key": "remark",
+                "value": "",
+                "type": "textarea"
+            }
+        ]
+    },
+    "terminal": {
+        "title": "终止工单",
+        "submit": {
+            "label": "终止工单",
+            "url": "/ywt/wechat/order/termination"
+        },
+        "form": [{
+                "label": "终止原因",
+                "key": "processValue",
+                "value": "",
+                "type": "pick",
+                "show": "stopreasonshow",
+                "option": [{
+                        "text": "信息填报错误",
+                        "id": 129,
+                        "value": "1"
+                    },
+                    {
+                        "text": "重复报修",
+                        "id": 130,
+                        "value": "2"
+                    },
+                    {
+                        "text": "报修人已解决",
+                        "id": 131,
+                        "value": "3"
+                    }
+                ]
+            },
+            {
+                "label": "终止说明",
+                "key": "remark",
+                "value": "",
+                "type": "textarea"
+            },
+            {
+                "label": "终止时间",
+                "key": "timer",
+                "value": "",
+                "show": "timepickshow",
+                "type": "time"
+            },
+            {
+                "label": "终止人",
+                "key": "makeUser",
+                "value": "",
+                "type": "pick",
+                "show": "makeUsershow",
+                "option": [{
+                        "text": "伍绍宇",
+                        "value": 0
+                    },
+                    {
+                        "text": "test",
+                        "value": 1
+                    },
+                    {
+                        "text": "测试001",
+                        "value": 2
+                    },
+                    {
+                        "text": "测试002",
+                        "value": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "return": {
+        "title": "退回",
+        "submit": {
+            "label": "退回",
+            "url": "/ywt/wechat/order/reback"
+        },
+        "form": [{
+                "label": "报修科室",
+                "key": "depart",
+                "value": "",
+                "type": "pick",
+                "show": "departshow",
+                "option": [{
+                        "value": "001",
+                        "text": "初始科室",
+                        "id": 1
+                    },
+                    {
+                        "value": "003",
+                        "text": "测试科室",
+                        "id": 4
+                    },
+                    {
+                        "value": "003",
+                        "text": "锦江院区",
+                        "id": 6
+                    },
+                    {
+                        "value": "004",
+                        "text": "华西院区",
+                        "id": 7
+                    },
+                    {
+                        "value": "00301",
+                        "parent_id": 6,
+                        "text": "放射治疗科",
+                        "id": 8
+                    }
+                ]
+            },
+            {
+                "label": "故障问题",
+                "key": "nowEquipment",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "退回原因",
+                "key": "processValue",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "详细说明",
+                "key": "remark",
+                "value": "",
+                "type": "textarea"
+            }
+        ]
+    },
+    "upgrade": {
+        "title": "工单升级",
+        "submit": {
+            "label": "工单升级",
+            "url": "ddth"
+        },
+        "form": [{
+                "label": "需求标题",
+                "key": "title",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "需求描述",
+                "key": "notion",
+                "value": "",
+                "type": "textarea"
+            },
+            {
+                "label": "需求单号",
+                "key": "number",
+                "value": "",
+                "type": "text"
+            },
+            {
+                "label": "处理人",
+                "key": "makeUser",
+                "value": "",
+                "type": "pick",
+                "show": "personshow",
+                "option": [{
+                        "text": "伍绍宇",
+                        "value": 0
+                    },
+                    {
+                        "text": "test",
+                        "value": 1
+                    },
+                    {
+                        "text": "测试001",
+                        "value": 2
+                    },
+                    {
+                        "text": "测试002",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "label": "附件",
+                "key": "processEnclosure",
+                "value": "",
+                "type": "file"
+            },
+            {
+                "label": "更多信息",
+                "key": "remark",
+                "value": false,
+                "type": "switch"
+            }
+        ]
+    },
+    "repair": {
+        "title": "送修",
+        "submit": {
+            "label": "送修",
+            "url": "ddth"
+        },
+        "form": [
+            {"label": "设备编号", "key": "depart", "value": "", "type": "text"},
+            {"label": "设备名称", "key": "fault", "value": "", "type": "text"},
+            {"label": "设备分类", "key": "person", "value": "", "type": "pick", "show": "personshow", "option": [
+              {"text": "张三", "value": 0},
+              {"text": "李四", "value": 1},
+              {"text": "王五", "value": 2},
+              {"text": "赵四", "value": 3}
+            ]},
+            {"label": "设备型号", "key": "fault", "value": "", "type": "text"},
+            {"label": "设备序列号", "key": "fault_num", "value": "", "type": "text"},
+            {"label": "设备重要性", "key": "isness", "value": 1, "type": "radio", "option": [
+              {"text": "重要", "value": 1},
+              {"text": "不重要", "value": 0}
+            ]},
+            {"label": "备注", "key": "tooltip", "value": "", "type": "textarea"},
+             {"label": "故障描述", "key": "notion", "value": "", "type": "textarea"}
+        ]
+    },
+    "reback": {
+        "title": "退单",
+        "submit": {
+            "label": "退单",
+            "url": "xxxxx"
+        },
+        "form": [{
+                "label": "退单原因",
+                "key": "processValue",
+                "value": "",
+                "type": "radio",
+                "option": [{
+                        "text": "不会处理",
+                        "value": 0
+                    },
+                    {
+                        "text": "没有时间",
+                        "value": 1
+                    },
+                    {
+                        "text": "错派工单",
+                        "value": 2
+                    }
+                ]
+            },
+            {
+                "label": "详细说明",
+                "key": "remark",
+                "value": "",
+                "type": "textarea"
+            }
+        ]
+    }
 }

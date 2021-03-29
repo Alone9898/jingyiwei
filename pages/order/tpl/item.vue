@@ -77,29 +77,30 @@ import {
                     "待审核": "pend",
                     "已完成": 'comp'
                 },
-                // itemList: [{
-                //         orderId: '235346453456467',
-                //         orderAlarm: '紧急',
-                //         orderRange: '全院',
-                //         createTime: '2021-3-2 18:00',
-                //         orderStatus: '待接',
-                //         orderGroup: '康复维修组',
-                //         orderDepart: '后勤保障部-设备维修科',
-                //         orderMsgs: [{
-                //                 label: '故障分类',
-                //                 content: '工业故障'
-                //             },
-                //             {
-                //                 label: '故障描述',
-                //                 content: '设备老化，造成设备无法使用'
-                //             },
-                //             {
-                //                 label: '报障人',
-                //                 content: '张三',
-                //                 phone: '1847493485'
-                //             }
-                //         ]
-                //     },
+                // itemList: [
+                //     // {
+                //     //     orderId: '235346453456467',
+                //     //     orderAlarm: '紧急',
+                //     //     orderRange: '全院',
+                //     //     createTime: '2021-3-2 18:00',
+                //     //     orderStatus: '待接',
+                //     //     orderGroup: '康复维修组',
+                //     //     orderDepart: '后勤保障部-设备维修科',
+                //     //     orderMsgs: [{
+                //     //             label: '故障分类',
+                //     //             content: '工业故障'
+                //     //         },
+                //     //         {
+                //     //             label: '故障描述',
+                //     //             content: '设备老化，造成设备无法使用'
+                //     //         },
+                //     //         {
+                //     //             label: '报障人',
+                //     //             content: '张三',
+                //     //             phone: '1847493485'
+                //     //         }
+                //     //     ]
+                //     // },
                 // ]
             }
         },

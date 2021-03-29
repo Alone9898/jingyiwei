@@ -27,7 +27,7 @@
         <view class="bottom_btn">
             <van-button round :plain="listType !== 'recOrder'" block v-for="(cur, index) in btnConfig[listType]" :key="index" type="info" @click="dealOrder(cur)">{{ cur.label }}</van-button>
         </view>
-        <deal-from :nodeId='nodeId' :clickType='clickType'></deal-from>
+        <deal-from :nodeId='nodeId' :clickType='clickType' :orderId='orderId'></deal-from>
     </div>
 </template>
 
@@ -69,10 +69,10 @@ import dealFrom from './dealForm'
                       title: '故障信息',
                       msgs: [
                           { label: '建单人', value: '张三', type: 'text', source: '' },
-                          { label: '建单时间', value: '2021-3-5 18:00', type: 'text', source: '' },
-                          { label: '来源', value: '2021-3-5 18:00', type: 'text', source: '' },
-                          { label: '所需工时(/小时):', value: '2021-3-5 18:00', type: 'text', source: '' },
-                          { label: '故障分类:', value: '2021-3-5 18:00', type: 'text', source: '' },
+                          { label: '建单时间', value: '', type: 'text', source: '' },
+                          { label: '来源', value: '', type: 'text', source: '' },
+                          { label: '所需工时(/小时):', value: '', type: 'text', source: '' },
+                          { label: '故障分类:', value: ' 18:00', type: 'text', source: '' },
                           { label: '故障描述:', value: '设备老化', type: 'text', source: '' },
                           { label: '详细说明:', value: '设备老化,造成设备无法使用', type: 'text', source: '' },
                           { label: '紧急程度:', value: '非常紧急', type: 'text', source: '' },
@@ -86,7 +86,7 @@ import dealFrom from './dealForm'
                       title: '接听信息',
                       msgs: [
                           { label: '接听人:', value: '张三', type: 'text', source: '' },
-                          { label: '通话时间:', value: '2021-3-5 18:00', type: 'text', source: '' },
+                          { label: '通话时间:', value: '', type: 'text', source: '' },
                           { label: '报修人:', value: '电话报修', type: 'text', source: '' },
                           { label: '报修人电话:', value: '电话报修', type: 'text', source: '' },
                           { label: '报修科室:', value: '电话报修', type: 'text', source: '' },

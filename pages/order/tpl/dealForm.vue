@@ -181,6 +181,7 @@ import dealFormConfig from './dealForm.config.json'
             return {
                 fromConfig: {},
                 submitForm: {},
+                baseUrl:''
             }
         },
         
@@ -190,6 +191,7 @@ import dealFormConfig from './dealForm.config.json'
                 this.submitForm = {};
                 if (!this.clickType) return false;
                 this.fromConfig = dealFormConfig[this.clickType];
+                this.baseUrl=this.fromConfig.submit.url
                 this.fromConfig.form.forEach(ele => {
                     if (ele.hasOwnProperty('show')) this.submitForm[ele.show] = false;
                     if (ele.type === 'file') this.submitForm.fileList = [];
@@ -261,6 +263,7 @@ import dealFormConfig from './dealForm.config.json'
             // 下拉选择确认
             onConfirm(arg, item) {
                 this.submitForm[item.key] = (item.type === 'pick' ? arg[0].detail.value.text : this.$tool.dateFormat("YYYY-MM-DD hh:mm:ss", arg[0].detail));
+                console.log(this.submitForm)
                 this.submitForm[item.show] = false;
                 this.$forceUpdate();
             },
@@ -276,7 +279,7 @@ import dealFormConfig from './dealForm.config.json'
                     param+=('&' + cur + '=' + this.submitForm[cur])
                 })
                 axios({
-                    url: '/ywt/busOrderFault/nextOrder?orderNum=' + this.orderId + param,
+                    url: this.baseUrl+'?orderNum=' + this.orderId + param,
                     method: 'post'
                 }).then(res => {
                     console.log('res',res);

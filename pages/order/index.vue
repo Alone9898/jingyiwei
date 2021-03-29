@@ -126,22 +126,12 @@ import {
                     Object.keys(res.body.redInfo).forEach(cur => {
                         this.redNums.push(res.body.redInfo[cur]);
                     })
-                    console.log('this.redNums', this.redNums);
                     this.$forceUpdate();
                 })
             },
-            test(){
-                axios({
-                    url: '/ywt/busOrderStatistics/getRedInfo',
-                    method: 'post'
-                }).then(res => {
-                    
-                })
-            }
         },
         mounted() {
-            this.test()
-            this.init('0')
+            this.init(0)
         },
         onLoad: async function (option) {
             this.listType = option.type;
