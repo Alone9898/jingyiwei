@@ -112,7 +112,7 @@ import {
                             orderRange: uni.getStorageSync('Edition').unit.filter(cur => cur.id == item.postDept)[0].dept_name,
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.processState],
-                            orderGroup: item.firstGroup,
+                            orderGroup: '报修地址',
                             orderDepart: item.firstGroup + '-' + item.lastGroup,
                             orderMsgs: [
                                 {
@@ -123,10 +123,10 @@ import {
                                     label: '故障描述',
                                     content: item.faultRemark
                                 },
-                                {
-                                    label: '报修地址',
-                                    content: '成都ccdc'
-                                },
+                                // {
+                                //     label: '报修地址',
+                                //     content: '成都ccdc'
+                                // },
                                 {
                                     label: '报障人',
                                     content: item.makeUserName,

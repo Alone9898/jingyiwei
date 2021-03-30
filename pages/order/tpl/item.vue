@@ -252,7 +252,7 @@ import {
 
                 .content_title {
                     text:nth-child(1) {
-                        font-size: 44rpx;
+                        font-size: 28rpx;
                         font-weight: 600;
                     }
 
