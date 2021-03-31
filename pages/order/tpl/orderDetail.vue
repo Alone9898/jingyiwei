@@ -45,6 +45,7 @@ import dealFrom from './dealForm'
                 orderId: '',
                 clickType:  '',
                 listType: '',
+                proce: '',
                 showInfo:false,
                 orderMsgList: [],
                 btnConfig: {
@@ -63,6 +64,15 @@ import dealFrom from './dealForm'
                         {label: '工单升级', type: 'upgrade'},
                         {label: '送修', type: 'repair'},
                     ]
+                },
+
+                btnPromise: {  // 流程对应按钮权限
+                    '待审核': ['upgrade'],
+                    '流程暂停': ['deal'],
+                    '处理中': ['carry','suspend','deal','deliver','assist','terminal','return','upgrade','repair'],
+                    '终止': ['deal'],
+                    '未派单': [],
+                    '已完成': [],
                 },
                 orderInfo: {},
                 orderMsg: [
@@ -108,6 +118,14 @@ import dealFrom from './dealForm'
         methods: {
             // 工单处理按钮
             dealOrder(cur) {
+                if (this.btnPromise[this.proce].filter(_cur => _cur === cur.type).length < 1) {
+                    uni.showToast({
+                        title: '无法' + cur.label + '操作',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                    return false;
+                }
                 if (this.listType === 'myOrder') { // 只有我的工单能弹窗处理
                     this.clickType = cur.type;
                     this.nodeId = new Date().getTime();
@@ -125,6 +143,9 @@ import dealFrom from './dealForm'
                                 title: '接单成功',
                                 duration: 2000
                             });
+                            uni.reLaunch({
+                                url: '../index?type=recOrder&typeIndex=1'
+                            })
                         }
                     })
                 }
@@ -174,8 +195,10 @@ import dealFrom from './dealForm'
         },
         onLoad: function (option) {
             this.orderId = option.orderId;
+            this.proce = option.proce;
             this.info()
             this.listType = option.type;
+            console.log(this.listType);
             if (option.showdeal) {
                setTimeout(() => {
                 this.clickType = 'reback';

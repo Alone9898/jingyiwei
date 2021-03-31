@@ -293,6 +293,15 @@ import dealFormConfig from './dealForm.config.json'
                             duration: 2000
                         });
                         this.onClose()
+                        if (this.clickType === 'reback') {
+                            uni.reLaunch({
+                                url: '../index?type=recOrder&typeIndex=1'
+                            })
+                        } else {
+                            uni.reLaunch({
+                                url: '../index?type=myOrder&typeIndex=2'
+                            })
+                        }
                     }else{
                         uni.showToast({
                             title: res.msg,

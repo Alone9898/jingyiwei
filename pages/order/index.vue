@@ -23,6 +23,20 @@ import ITEM from './tpl/item'
 import {
         axios
     } from '@/util/index.js'
+
+const process = [
+    {name: "待接单", id: 121, value: "create"},
+    {name: "未派单", id: 122, value: "start"},
+    {name: "未派单", id: 122, value: "back"},
+    {name: "未派单", id: 122, value: ""},
+    {name: "已完成", id: 123, value: "close"},
+    {name: "已完成", id: 123, value: "end_termination"},
+    {name: "流程暂停", id: 124, value: "suspend"},
+    {name: "待评价", id: 125, value: "end_examine"},
+    {name: "待审核", id: 126, value: "complete"},
+    {name: "处理中", id: 127, value: "other"}
+]
+
     export default {
         components: {ITEM},
         data() {
@@ -37,7 +51,7 @@ import {
                 orderType: {
                     recOrder: {
                         all: '全部',
-                        recep: '个人待接',
+                        // recep: '个人待接',
                         // proce: '小组待接',
                         // comment: '协助待接'
                     },
@@ -109,12 +123,15 @@ import {
                         obj = {
                             orderId: item.orderNum,
                             orderAlarm: orderAlarm,
-                            orderRange: uni.getStorageSync('Edition').unit.filter(cur => cur.id == item.postDept)[0].dept_name,
+                            orderRange: uni.getStorageSync('Edition').unit.filter(cur => cur.id == item.rangeType)[0].dept_name,
                             createTime: item.createTime,
                             orderStatus: ['处理中','已完成','未接单'][item.processState],
-                            orderGroup: '报修地址',
-                            orderDepart: item.firstGroup + '-' + item.lastGroup,
+                            orderStatus: process.filter(cur => cur.value == item.processState)[0] ? process.filter(cur => cur.value == item.processState)[0].name : '处理中',
                             orderMsgs: [
+                                {
+                                  label: '报修科室',
+                                  content: item.firstGroup + '-' + item.lastGroup,
+                                },
                                 {
                                     label: '故障分类',
                                     content: uni.getStorageSync('Edition').dic.faultClassification.filter(cur => cur.value == item.faultType)[0].name

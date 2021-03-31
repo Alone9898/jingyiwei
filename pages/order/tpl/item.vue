@@ -21,10 +21,10 @@
                 </view>
             </view>
             <view class="content_msg">
-                <view class="content_title">
+                <!-- <view class="content_title">
                     <text>{{ item.orderGroup }}</text>
                     <text>{{ item.orderDepart }}</text>
-                </view>
+                </view> -->
                 <view class="content_body">
                     <van-cell center :is-link="listType !== 'revOrder'" @click="queryDetail(item)">
                         <view slot="title">
@@ -71,12 +71,15 @@ import {
                     "常规": 'normal'
                 },
                 orderStatusConfig: {
-                    "未接单": "recep",
+                    "待接单": "recep",
                     "处理中": "proce",
+                    "未派单": "pend",
+                    "流程暂停": "proce",
                     "待评价": "comm",
                     "待审核": "pend",
                     "已完成": 'comp'
                 },
+
                 // itemList: [
                 //     // {
                 //     //     orderId: '235346453456467',
@@ -128,7 +131,7 @@ import {
             queryDetail(item, showdeal = '') {
                 if (this.listType === 'revOrder') return false; // 审核工单暂时不能查看详情
                 uni.navigateTo({
-                    url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType + '&showdeal=' + showdeal
+                    url: "./tpl/orderDetail?orderId=" + item.orderId + '&type=' + this.listType + '&showdeal=' + showdeal + '&proce=' + item.orderStatus || ''
                 })
             }
         },
@@ -224,7 +227,6 @@ import {
 
                     &>view {
                         flex: 1;
-                        padding-left: 20rpx;
                         display: flex;
                         align-items: center;
                     }
@@ -233,14 +235,14 @@ import {
                         display: flex;
                         justify-content: space-between;
                         &>text:nth-child(1){
-                            width: 180px;
+                            width: 160px;
                             overflow: hidden;
                             text-overflow:ellipsis; 
                             white-space: nowrap;
                         }
                         &>text:nth-child(2) {
-                            margin-right: 20rpx;
-                            font-weight: 600;
+                            margin-right: 6rpx;
+                            font-weight: 700;
                         }
                     }
                 }
@@ -253,13 +255,12 @@ import {
                 .content_title {
                     text:nth-child(1) {
                         font-size: 28rpx;
-                        font-weight: 600;
+                        color: rgb(124, 124, 124);
                     }
 
                     text:nth-child(2) {
                         margin-left: 30rpx;
                         font-size: 28rpx;
-                        color: rgb(124, 124, 124);
                     }
                 }
 
