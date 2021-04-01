@@ -14,6 +14,7 @@
             {
                 "label": "故障分类",
                 "key": "nowEquipment",
+                "getOpt": "dic.faultClassification",
                 "value": "",
                 "type": "pick",
                 "show": "faultClassificationshow",
