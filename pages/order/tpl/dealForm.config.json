@@ -231,7 +231,8 @@
                 "value": "",
                 "type": "pick",
                 "show": "makeUsershow",
-                "option": [{
+                "option": [
+                    {
                         "text": "伍绍宇",
                         "value": 0
                     },
@@ -246,6 +247,14 @@
                     {
                         "text": "测试002",
                         "value": 3
+                    },
+                    {
+                        "text": "查月环",
+                        "value": 4
+                    },
+                    {
+                        "text": "兰勇",
+                        "value": 5
                     }
                 ]
             },

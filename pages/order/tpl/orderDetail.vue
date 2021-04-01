@@ -68,7 +68,7 @@ import dealFrom from './dealForm'
 
                 btnPromise: {  // 流程对应按钮权限
                     '待审核': ['upgrade'],
-                    '流程暂停': ['deal'],
+                    '流程暂停': ['suspend'],
                     '处理中': ['carry','suspend','deal','deliver','assist','terminal','return','upgrade','repair'],
                     '终止': ['deal'],
                     '未派单': [],
@@ -118,7 +118,7 @@ import dealFrom from './dealForm'
         methods: {
             // 工单处理按钮
             dealOrder(cur) {
-                if (this.btnPromise[this.proce].filter(_cur => _cur === cur.type).length < 1) {
+                if (this.listType === 'myOrder' && (this.btnPromise[this.proce].filter(_cur => _cur === cur.type).length < 1)) {
                     uni.showToast({
                         title: '无法' + cur.label + '操作',
                         icon: 'none',
@@ -143,9 +143,11 @@ import dealFrom from './dealForm'
                                 title: '接单成功',
                                 duration: 2000
                             });
-                            uni.reLaunch({
-                                url: '../index?type=recOrder&typeIndex=1'
-                            })
+                            setTimeout(() => {
+                                uni.reLaunch({
+                                    url: '../index?type=recOrder&typeIndex=1'
+                                })
+                            }, 600)
                         }
                     })
                 }

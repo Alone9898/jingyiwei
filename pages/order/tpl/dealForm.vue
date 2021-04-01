@@ -278,6 +278,91 @@ import dealFormConfig from './dealForm.config.json'
             },
             // 提交
             submit() {
+                
+                if (this.clickType === 'carry') { // {label: '完成', type: 'carry'},
+                    if (!this.submitForm.nowEquipment || !this.submitForm.makeWay || !this.submitForm.makeProcess) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                } else if (this.clickType === 'suspend') { // {label: '暂停处理', type: 'suspend'},
+                    if (!this.submitForm.processValue) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                } else if (this.clickType === 'deal') {// {label: '处理', type: 'deal'},
+                    if (!this.submitForm.makeProcess) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                } else if (this.clickType === 'deliver') {// {label: '转交', type: 'deliver'},
+                    if (!this.submitForm.processValue || !(this.submitForm.makeUser + '')) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                } else if (this.clickType === 'assist') {// {label: '多人协助', type: 'assist'},
+                    if (!(this.submitForm.makeUser + '') || !this.submitForm.remark) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                } else if (this.clickType === 'terminal') {// {label: '终止工单', type: 'terminal'},
+                    if (!this.submitForm.processValue) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                } else if (this.clickType === 'return') {// {label: '退回', type: 'return'},
+                    if (!this.submitForm.processValue) {
+                        uni.showToast({
+                            title: '请填写完整',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return false;
+                    }
+                // } else if (this.clickType === 'upgrade') {// {label: '工单升级', type: 'upgrade'},
+                //     if (!this.submitForm.processValue) {
+                //         uni.showToast({
+                //             title: '请填写完整',
+                //             icon: 'none',
+                //             duration: 2000
+                //         });
+                //         return false;
+                //     }
+                // } else if (this.clickType === 'repair') {// {label: '送修', type: 'repair'},
+                //     if (!this.submitForm.processValue) {
+                //         uni.showToast({
+                //             title: '请填写完整',
+                //             icon: 'none',
+                //             duration: 2000
+                //         });
+                //         return false;
+                //     }
+                }
+
+
                 this.$api.postDataRequest('DEAL_ORDER_NEXT',{...this.submitForm, orderNum: this.orderId});
                 let param = ''
                 Object.keys(this.submitForm).forEach(cur => {
@@ -305,7 +390,7 @@ import dealFormConfig from './dealForm.config.json'
                     }else{
                         uni.showToast({
                             title: res.msg,
-                             icon: 'none',
+                            icon: 'none',
                             duration: 2000
                         });
                     }
