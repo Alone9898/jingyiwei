@@ -10,7 +10,7 @@
                 background="#fff"
                 placeholder="请输入搜索关键词"
         />
-        <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick">
+        <van-tabs active="all" sticky animated swipeable color='#409EFF' @click="tabClick" v-show='listType!=="recOrder"'>
             <van-tab v-for="(val, key) in tabsConfig"  :key="key" :title="val" :name="key" :info="redNums[key]">
             </van-tab>
         </van-tabs>
