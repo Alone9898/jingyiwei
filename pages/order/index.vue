@@ -123,9 +123,10 @@ const process = [
                         obj = {
                             orderId: item.orderNum,
                             orderAlarm: orderAlarm,
-                            orderRange: uni.getStorageSync('Edition').unit.filter(cur => cur.id == item.rangeType)[0].dept_name,
+                            // orderRange: uni.getStorageSync('Edition').unit.filter(cur => cur.id == item.rangeType)[0].dept_name,
+                            orderRange:['个人','科室','多科室'][item.rangeType - 1],
                             createTime: item.createTime,
-                            orderStatus: ['处理中','已完成','未接单'][item.processState],
+                            orderStatus: ['处理中','已完成','未接单','全院'][item.processState],
                             orderStatus: process.filter(cur => cur.value == item.processState)[0] ? process.filter(cur => cur.value == item.processState)[0].name : '处理中',
                             orderMsgs: [
                                 {
