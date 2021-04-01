@@ -70,7 +70,7 @@ import dealFrom from './dealForm'
                     '待审核': ['upgrade'],
                     '流程暂停': ['suspend'],
                     '处理中': ['carry','suspend','deal','deliver','assist','terminal','return','upgrade','repair'],
-                    '终止': ['deal'],
+                    '终止': ['terminal'],
                     '未派单': [],
                     '已完成': [],
                 },
