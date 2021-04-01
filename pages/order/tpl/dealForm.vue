@@ -185,6 +185,7 @@ import dealFormConfig from './dealForm.config.json'
         },
         data() {
             return {
+                dealFormConfig,
                 fromConfig: {},
                 submitForm: {},
                 baseUrl:''
@@ -196,7 +197,7 @@ import dealFormConfig from './dealForm.config.json'
                 this.fromConfig = {};
                 this.submitForm = {};
                 if (!this.clickType) return false;
-                this.fromConfig = dealFormConfig[this.clickType];
+                this.fromConfig = this.dealFormConfig[this.clickType];
                 this.baseUrl=this.fromConfig.submit.url
                 this.fromConfig.form.forEach(ele => {
                     if (ele.hasOwnProperty('show')) this.submitForm[ele.show] = false;
@@ -399,7 +400,19 @@ import dealFormConfig from './dealForm.config.json'
             }
         },
         created() {
-
+            Object.keys(this.dealFormConfig).forEach(cur => {
+                this.dealFormConfig[cur].form.forEach(item => {
+                    if (item.type === 'pick' && item.getOpt) {
+                        item.option = uni.getStorageSync('Edition')[item.getOpt.split('.')[0]][item.getOpt.split('.')[1]].map(ele => {
+                            return {
+                                text: ele.name,
+                                id: ele.id,
+                                value: ele.value
+                            }
+                        });
+                    }
+                })
+            })
         },
         mounted() {
             
